@@ -3,7 +3,6 @@
 Menu::Menu(const std::string& title, Application* app) : title_(title), app(app)
 {
 }
-
 void Menu::Paint()
 {
 	bool readyToGoBack = false;

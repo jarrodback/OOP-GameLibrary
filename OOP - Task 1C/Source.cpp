@@ -1,5 +1,6 @@
-#include "MainMenu.h"
+//#include "MainMenu.h"
 #include "Application.h"
+#include "MainMenu.h"
 
 int main()
 {
