@@ -14,6 +14,7 @@ int Date::getYear() const
 	return year;
 }
 
+
 Date::Date()
 {
 }
