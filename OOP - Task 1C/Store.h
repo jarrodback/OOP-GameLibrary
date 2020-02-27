@@ -8,6 +8,5 @@ class Store
 		Store();
 		~Store();
 		List<Game*> games;
-		//Game* games[9] = { }; // TODO: should be a dynamic collection
 	private:
 };

@@ -11,5 +11,4 @@ class LibraryItem
 	private:
 		const Game *game;
 		const Date purchased;
-		//const std::string purchased;  // TODO: replace with custom Date class, currently YYYY-MM-DD
 };
