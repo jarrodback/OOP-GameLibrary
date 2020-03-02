@@ -1,6 +1,6 @@
 #include "LoginMenu.h"
 
-LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title,app)
+LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, app)
 {
 	Paint();
 }
@@ -13,9 +13,7 @@ void LoginMenu::OutputOptions()
 		}
 	}
 	else {
-		for (int x = 0; x < app->GetAccounts().length(); x++) {
-			Option(x + 1, app->GetAccounts()[x]->GetEmail());
-		}
+		Option(1, "Login");
 	}
 }
 
@@ -34,13 +32,13 @@ bool LoginMenu::HandleChoice(char choice)
 		}
 	}
 	else {
-		if (index >= 0 && index < app->GetAccounts().length())
-		{
+		Line("Please enter your email: ");
+		std::string email = Utils::GetLineFromUser();
+		if (app->DoesEmailExist(email)) {
 			Line("Enter the password: ");
 			std::string password = Utils::GetLineFromUser();
-			if (app->GetAccounts()[index]->CheckPassword(password)) {
-				app->LoginAccount(app->GetAccounts()[index]);
-				return true;
+			if (app->GetAccountFromEmail(email)->CheckPassword(password)) {
+				app->LoginAccount(app->GetAccountFromEmail(email));
 			}
 		}
 	}

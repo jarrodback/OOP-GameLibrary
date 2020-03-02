@@ -41,6 +41,22 @@ User* Application::GetCurrentUser() const
 	return currentUser;
 }
 
+Account* Application::GetAccountFromEmail(std::string& email) const
+{
+	for (int x = 0; x < accounts.length(); x++)
+		if (accounts[x]->GetEmail() == email)
+			return accounts[x];
+	return 0;
+}
+
+bool Application::DoesEmailExist(std::string& email) const
+{
+	for (int x = 0; x < accounts.length(); x++)
+		if (accounts[x]->GetEmail() == email)
+			return true;
+	return false;
+}
+
 Store& Application::GetStore()
 {
 	return store;
