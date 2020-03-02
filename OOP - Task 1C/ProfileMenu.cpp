@@ -7,20 +7,11 @@ ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(titl
 
 void ProfileMenu::OutputOptions()
 {
-	//for (int x = 0; x < 5; x++)
-	//{
-	//	// adding 1 so the display is nicer for the user
-	//	Option(i + 1, games[i]);
-	//}
-
-	//if (app->IsAccountLoggedIn())
-	//{
-	//	Option('L', "Woo");
-	//}
-	//else
-	//{
-	//	//Option('L', "Login");
-	//}
+	Line("GAMES");
+	Player* pPlayer = (Player*)app->GetCurrentUser();
+	for (int x = 0; x < pPlayer->library.length(); x++) {
+		Option(x + 1, pPlayer->library[x]->GetName());
+	}
 }
 
 bool ProfileMenu::HandleChoice(char choice)
