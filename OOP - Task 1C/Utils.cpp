@@ -12,7 +12,7 @@ char Utils::GetCharFromUser()
 	return toupper(GetLineFromUser()[0]);
 }
 
-bool Utils::startsWith(std::string& input, std::string& fullText) {
+bool Utils::startsWith(const std::string& input, const std::string& fullText) {
 	for (int i = 0; i < input.length(); ++i) {
 		if (tolower(input[i]) != tolower(fullText[i]))
 			return false;
