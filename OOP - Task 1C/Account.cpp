@@ -12,3 +12,13 @@ Account::~Account()
 		delete users[i];
 	}
 }
+
+std::string Account::getEmail()
+{
+	return email;
+}
+
+const bool Account::CheckPassword(std::string& password) const
+{
+	return password == this->password;
+}

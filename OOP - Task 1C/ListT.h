@@ -52,7 +52,7 @@ class List
     ~List();                                 // destructor
     List<T>& operator = (const List<T>&);    // copy assignment operator
     bool operator == (const List<T>&) const; // compare with content of another list
-    const T operator [] (const int& index) const; // get item from array at index
+    const T operator [] (const int index) const; // get item from array at index
     bool isEmpty() const;                    // check if list is empty
     const T first() const;                   // return first item (MUST be non-empty)
     const T last() const;                    // return last item (MUST be non-empty)
@@ -132,12 +132,14 @@ bool List<T>::operator == (const List<T>& rhs) const
 }
 
 template<class T>
-const T List<T>::operator[](const int& index) const
+const T List<T>::operator[](const int index) const
 {
     Node<T>* pIndex = head;
     for (int x = 0; x < index; x++) 
-        assert(pIndex->next != nullptr);
-        pIndex = pIndex->next;
+        if(index != 0){
+            assert(pIndex->next != nullptr);
+            pIndex = pIndex->next;
+        }
     return pIndex->item;
 }
 

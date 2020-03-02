@@ -13,3 +13,8 @@ const std::string& User::GetUsername() const
 {
 	return username;
 }
+
+const bool User::CheckPassword(std::string& password) const
+{
+	return password == this->password;
+}
