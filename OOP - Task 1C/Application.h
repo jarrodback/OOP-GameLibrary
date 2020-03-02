@@ -17,6 +17,8 @@ public:
 	bool IsUserAdmin() const;
 	Account* GetCurrentAccount() const;
 	User* GetCurrentUser() const;
+	Account* GetAccountFromEmail(std::string&) const;
+	bool DoesEmailExist(std::string&) const;
 
 	Store& GetStore();
 
