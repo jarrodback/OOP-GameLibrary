@@ -10,6 +10,18 @@ void SearchMenu::OutputOptions()
 {
 	Line("Searching ", " Games.", filteredGames.length());
 	Line();
+	if (filteredGames.length() > 0) {
+		for (int i = 0; i < filteredGames.length(); i++)
+		{
+			// adding 1 so the display is nicer for the user
+			Option(i + 1, filteredGames[i]->GetName());
+		}
+		Line();
+	}
+	else {
+		Line("No results found.");
+		Line();
+	}
 	Option('N', "Search by Name");
 	Option('P', "Search by Price");
 }
@@ -25,7 +37,6 @@ bool SearchMenu::HandleChoice(char choice)
 					filteredGames.deleteOne(filteredGames[i - 1]);
 				}
 			}
-			SearchResults("SHOWING RESULTS", app, filteredGames);
 		} break;
 		case 'P': {
 			Line("Enter a price range (e.g. 5-10): ");
@@ -35,7 +46,6 @@ bool SearchMenu::HandleChoice(char choice)
 					filteredGames.deleteOne(filteredGames[i - 1]);
 				}
 			}
-			SearchResults("SHOWING RESULTS", app, filteredGames);
 		} break;		
 	}
 	return false;

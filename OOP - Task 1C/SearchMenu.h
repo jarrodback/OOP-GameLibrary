@@ -11,6 +11,3 @@ class SearchMenu : public Menu
 	private:
 	  List<Game*> filteredGames;
 };
-
-
-
