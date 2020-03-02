@@ -13,7 +13,22 @@ Account::~Account()
 	}
 }
 
-std::string Account::getEmail()
+const List<User*> Account::GetUsers() const
+{
+	return users;
+}
+
+void Account::AddToUsers(User* user)
+{
+	users.addAtEnd(user);
+}
+
+void Account::RemoveFromUsers(User* user)
+{
+	users.deleteOne(user);
+}
+
+std::string Account::GetEmail()
 {
 	return email;
 }

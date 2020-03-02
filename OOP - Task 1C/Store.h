@@ -7,6 +7,9 @@ class Store
 	public:
 		Store();
 		~Store();
-		List<Game*> games;
+		const List<Game*> GetGames() const;
+		void AddToGames(Game*);
+		void RemoveFromGames(Game*);
 	private:
+		List<Game*> games;
 };

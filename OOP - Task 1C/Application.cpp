@@ -65,7 +65,7 @@ bool Application::LoginAccount(Account* const account)
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first user
-	currentUser = currentAccount->users[0];
+	currentUser = currentAccount->GetUsers()[0];
 	return true;
 }
 bool Application::LoginUser(User* const user)
@@ -77,4 +77,19 @@ bool Application::LoginUser(User* const user)
 void Application::LogoutUser()
 {
 	currentUser = nullptr;
+}
+
+const List<Account*> Application::GetAccounts() const
+{
+	return accounts;
+}
+
+void Application::AddToAccounts(Account* account)
+{
+	accounts.addAtEnd(account);
+}
+
+void Application::RemoveFromAccounts(Account* account)
+{
+	accounts.deleteOne(account);
 }

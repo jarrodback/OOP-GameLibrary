@@ -25,8 +25,12 @@ public:
 	bool LoginUser(const std::string& username, const std::string& password);
 	bool LoginUser(User* const user);
 	void LogoutUser();
-	List<Account*> accounts;
+
+	const List<Account*> GetAccounts() const;
+	void AddToAccounts(Account*);
+	void RemoveFromAccounts(Account*);
 private:
+	List<Account*> accounts;
 	Store store;
 	Account* currentAccount;
 	User* currentUser;

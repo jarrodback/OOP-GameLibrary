@@ -12,3 +12,18 @@ Player::~Player()
 		delete library[i];
 	}
 }
+
+const List<LibraryItem*> Player::GetLibrary() const
+{
+	return library;
+}
+
+void Player::AddToLibrary(LibraryItem* libraryItem)
+{
+	library.addAtEnd(libraryItem);
+}
+
+void Player::RemoveFromLibrary(LibraryItem* libraryItem)
+{
+	library.deleteOne(libraryItem);
+}
