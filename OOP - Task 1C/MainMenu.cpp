@@ -56,6 +56,7 @@ bool MainMenu::HandleChoice(char choice)
 		{
 			// this needs to go to a profile page - similar to StoreMenu
 			// notice the if - this only works if somebody is logged in
+			ProfileMenu("PROFILE", app);
 		}
 	} break;
 	}

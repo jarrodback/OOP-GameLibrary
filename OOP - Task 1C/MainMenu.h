@@ -3,6 +3,7 @@
 #include "Menu.h"
 #include "StoreMenu.h"
 #include "LoginMenu.h"
+#include "ProfileMenu.h"
 
 class MainMenu : public Menu
 {
