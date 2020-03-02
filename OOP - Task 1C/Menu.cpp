@@ -38,6 +38,11 @@ void Menu::Line(const std::string& text)
 	std::cout << "  " << text << "\n";
 }
 
+void Menu::Line(const std::string& text1, const std::string& text2, const int& num)
+{
+	std::cout << "  " << text1 << num << text2 << "\n";
+}
+
 void Menu::Option(char id, const std::string& option)
 {
 	std::cout << "  " << id << ") " << option << '\n';

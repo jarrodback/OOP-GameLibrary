@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Menu.h"
+#include "SearchMenu.h"
 #include "ListT.h"
 #include <string>
 
