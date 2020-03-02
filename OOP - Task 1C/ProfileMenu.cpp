@@ -9,7 +9,7 @@ void ProfileMenu::OutputOptions()
 {
 	Line("GAMES");
 	Player* pPlayer = (Player*)app->GetCurrentUser();
-	for (int x = 0; x < pPlayer->GetLibrary().length(); x++) {
+	for (int x = 0; x < pPlayer->GetLibrary().size(); x++) {
 		Option(x + 1, pPlayer->GetLibrary()[x]->GetName());
 	}
 

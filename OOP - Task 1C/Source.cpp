@@ -32,6 +32,7 @@ void createHardcodedTestData()
 	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
 	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
 	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
+	u3->RemoveFromLibrary(u3->GetLibrary()[1]);
 
 	//// Make an account and attach the users
 	app.AddToAccounts(new Account("alice@shu.com", "password", testDate));

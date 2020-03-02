@@ -13,17 +13,23 @@ Player::~Player()
 	}
 }
 
-const List<LibraryItem*> Player::GetLibrary() const
+const std::vector<LibraryItem*> Player::GetLibrary() const
 {
 	return library;
 }
 
 void Player::AddToLibrary(LibraryItem* libraryItem)
 {
-	library.addAtEnd(libraryItem);
+	library.push_back(libraryItem);
 }
 
 void Player::RemoveFromLibrary(LibraryItem* libraryItem)
 {
-	library.deleteOne(libraryItem);
+	//library.vector::erase(libraryItem);
+	int index = -1;
+	for (int x = 0; x < library.size(); x++) {
+		if (library[x] == libraryItem)
+			index = x;
+	}
+	library.erase(library.begin() + index, library.begin() + index+1);
 }

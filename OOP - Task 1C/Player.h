@@ -3,16 +3,16 @@
 #include <string>
 #include "LibraryItem.h"
 #include "User.h"
-#include "ListT.h"
+#include <vector>
 
 class Player : public User
 {
 	public:
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
-		const List<LibraryItem*> GetLibrary() const;
+		const std::vector<LibraryItem*> GetLibrary() const;
 		void AddToLibrary(LibraryItem*);
 		void RemoveFromLibrary(LibraryItem*);
 	private:
-		List<LibraryItem*> library;
+		std::vector<LibraryItem*> library;
 };
