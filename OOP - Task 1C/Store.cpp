@@ -11,3 +11,18 @@ Store::~Store()
 		delete games[i];
 	}
 }
+
+const List<Game*> Store::GetGames() const
+{
+	return games;
+}
+
+void Store::AddToGames(Game* game)
+{
+	games.addAtEnd(game);
+}
+
+void Store::RemoveFromGames(Game* game)
+{
+	games.deleteOne(game);
+}

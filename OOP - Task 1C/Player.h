@@ -10,8 +10,9 @@ class Player : public User
 	public:
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
-		List<LibraryItem*> library;
-		int getCredits();
+		const List<LibraryItem*> GetLibrary() const;
+		void AddToLibrary(LibraryItem*);
+		void RemoveFromLibrary(LibraryItem*);
 	private:
-		int credits = 100;
+		List<LibraryItem*> library;
 };
