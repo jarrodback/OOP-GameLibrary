@@ -8,10 +8,22 @@ ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(titl
 void ProfileMenu::OutputOptions()
 {
 	Line("GAMES");
-	Player* pPlayer = (Player*)app->GetCurrentUser();
-	for (int x = 0; x < pPlayer->GetLibrary().size(); x++) {
-		Option(x + 1, pPlayer->GetLibrary()[x]->GetName());
+	if (!sorted) {
+		Player* pPlayer = (Player*)app->GetCurrentUser();
+		for (int x = 0; x < pPlayer->GetLibrary().size(); x++) {
+			Option(x + 1, pPlayer->GetLibrary()[x]->GetName());
+		}
 	}
+	else {
+		for (int x = 0; x < sortedList.size(); x++) {
+			Option(x + 1, sortedList[x]->GetName());
+		}
+	}
+	Line();
+	Line("SORT BY");
+	Option('N', "Sort by Name");
+	Option('D', "Sort by Date Purchased");
+
 
 	if (app->IsUserAdmin()) {
 		Line();
@@ -33,6 +45,12 @@ bool ProfileMenu::HandleChoice(char choice)
 	}break;
 	case 'R': {
 		RemoveUserMenu("Remove User From Account", app);
+	}break;
+	case 'N': {
+		Player* pPlayer = (Player*)app->GetCurrentUser();
+		sortedList = pPlayer->GetLibrary();
+		std::sort(sortedList.begin(), sortedList.end());
+		sorted = true;
 	}break;
 	}
 	return false;

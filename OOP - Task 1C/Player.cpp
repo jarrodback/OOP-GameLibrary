@@ -13,7 +13,7 @@ Player::~Player()
 	}
 }
 
-const std::vector<LibraryItem*> Player::GetLibrary() const
+std::vector<LibraryItem*> Player::GetLibrary() const
 {
 	return library;
 }
@@ -25,7 +25,6 @@ void Player::AddToLibrary(LibraryItem* libraryItem)
 
 void Player::RemoveFromLibrary(LibraryItem* libraryItem)
 {
-	//library.vector::erase(libraryItem);
 	int index = -1;
 	for (int x = 0; x < library.size(); x++) {
 		if (library[x] == libraryItem)

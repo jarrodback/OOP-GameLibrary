@@ -10,7 +10,7 @@ class Player : public User
 	public:
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
-		const std::vector<LibraryItem*> GetLibrary() const;
+		std::vector<LibraryItem*> GetLibrary() const;
 		void AddToLibrary(LibraryItem*);
 		void RemoveFromLibrary(LibraryItem*);
 	private:

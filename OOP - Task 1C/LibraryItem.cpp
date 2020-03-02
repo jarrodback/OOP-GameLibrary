@@ -13,3 +13,8 @@ const std::string& LibraryItem::GetName() const
 {
 	return game->GetName();
 }
+
+bool operator<(LibraryItem a, LibraryItem b)
+{
+	return (a.GetName() > b.GetName());
+}

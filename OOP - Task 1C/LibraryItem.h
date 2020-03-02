@@ -13,3 +13,4 @@ class LibraryItem
 		const Game *game;
 		const Date purchased;
 };
+bool operator<(LibraryItem a, LibraryItem b);
