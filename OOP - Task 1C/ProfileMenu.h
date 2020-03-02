@@ -11,6 +11,5 @@ public:
 	bool HandleChoice(char choice) final;
 private:
 	std::vector<LibraryItem*> sortedList;
-	bool sorted = false;
 };
 

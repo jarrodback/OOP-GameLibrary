@@ -9,6 +9,8 @@ Application app;
 void createHardcodedTestData()
 {
 	Date testDate(10, 10, 1999);
+	Date testDate2(10, 10, 2020);
+
 	// Setup store with some games
 	app.GetStore().AddToGames(new Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5));
 	app.GetStore().AddToGames(new Game("Braid", "A time twisting puzzle game.", 499, 15));
@@ -26,7 +28,7 @@ void createHardcodedTestData()
 	Player* u3 = new Player("Charlie", "password", testDate);
 
 	//// With some games in their library
-	u1->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[7]));
+	u1->AddToLibrary(new LibraryItem(testDate2, app.GetStore().GetGames()[7]));
 	u1->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[1]));
 	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[2]));
 	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
