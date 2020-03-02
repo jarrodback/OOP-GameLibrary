@@ -14,5 +14,5 @@ class User
 	private:
 		std::string username;
 		std::string password;
-		Date created;  
+		Date created;
 };
