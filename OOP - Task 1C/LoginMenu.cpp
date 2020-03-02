@@ -8,8 +8,8 @@ LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, a
 void LoginMenu::OutputOptions()
 {
 	if (app->IsAccountLoggedIn()) {
-		for (int x = 0; x < app->GetCurrentAccount()->users.length(); x++) {
-			Option(x + 1, app->GetCurrentAccount()->users[x]->GetUsername());
+		for (int x = 0; x < app->GetCurrentAccount()->GetUsers().length(); x++) {
+			Option(x + 1, app->GetCurrentAccount()->GetUsers()[x]->GetUsername());
 		}
 	}
 	else {
@@ -21,12 +21,12 @@ bool LoginMenu::HandleChoice(char choice)
 {
 	int index = choice - '1';
 	if (app->IsAccountLoggedIn()) {
-		if (index >= 0 && index < app->GetCurrentAccount()->users.length())
+		if (index >= 0 && index < app->GetCurrentAccount()->GetUsers().length())
 		{
 			Line("Enter the password: ");
 			std::string password = Utils::GetLineFromUser();
-			if (app->GetCurrentAccount()->users[index]->CheckPassword(password)) {
-				app->LoginUser(app->GetCurrentAccount()->users[index]);
+			if (app->GetCurrentAccount()->GetUsers()[index]->CheckPassword(password)) {
+				app->LoginUser(app->GetCurrentAccount()->GetUsers()[index]);
 				return true;
 			}
 		}
