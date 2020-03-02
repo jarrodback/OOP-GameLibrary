@@ -12,3 +12,20 @@ Player::~Player()
 		delete library[i];
 	}
 }
+
+std::ostream& Player::Write(std::ostream& os) const {
+	os << "ACCOUNT-PLAYER";
+	os << created;
+	os << username;
+	os << password;
+	//Credits
+	for (int x = 0; x < library.length(); x++)
+	{
+		os << library[x];
+	}
+}
+
+std::ostream& operator<<(std::ostream& os, Player const& p)
+{
+
+}

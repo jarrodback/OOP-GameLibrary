@@ -22,3 +22,16 @@ const bool Account::CheckPassword(std::string& password) const
 {
 	return password == this->password;
 }
+
+std::ostream& Account::write(std::ostream& os) const {
+	os << "ACCOUNT";
+	os << created;
+	os << email;
+	os << password;
+	return os;
+}
+
+std::ostream& operator<<(std::ostream& os, Account const& a)
+{
+	return a.write(os);
+}

@@ -13,3 +13,21 @@ const std::string& LibraryItem::GetName() const
 {
 	return game->GetName();
 }
+
+int LibraryItem::GetGameID() const
+{
+	return game->GetID();
+}
+
+std::ostream& LibraryItem::Write(std::ostream& os) const {
+
+}
+
+std::ostream& operator<<(std::ostream& os, LibraryItem const& li)
+{
+	os << "LIBRARY-ITEM";
+	os << li.GetGameID();
+	//GET DATE
+	//NEED TO ADD A GAMETIME
+	return os;
+}

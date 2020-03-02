@@ -12,7 +12,9 @@ class User
 		const bool CheckPassword(std::string&) const;
 
 	private:
+	
+	protected:
+		Date created;  
 		std::string username;
 		std::string password;
-		Date created;  
 };

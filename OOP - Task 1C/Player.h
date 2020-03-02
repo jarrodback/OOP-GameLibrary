@@ -13,3 +13,5 @@ class Player : public User
 		List<LibraryItem*> library;
 	private:
 };
+
+std::ostream& operator<<(std::ostream& os, Player const& p);

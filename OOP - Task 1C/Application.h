@@ -26,6 +26,9 @@ public:
 	bool LoginUser(User* const user);
 	void LogoutUser();
 	List<Account*> accounts;
+
+	void Save();
+	void Load();
 private:
 	Store store;
 	Account* currentAccount;
