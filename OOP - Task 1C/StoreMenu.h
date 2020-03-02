@@ -12,6 +12,4 @@ class StoreMenu : public Menu
 		StoreMenu(const std::string& title, Application * app);
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
-	private:
-		List<Game*> filteredGames;
 };

@@ -1,7 +1,6 @@
 #include "StoreMenu.h"
 StoreMenu::StoreMenu(const std::string& title, Application* app) : Menu(title, app)
 {
-	filteredGames = app->GetStore().GetGames();
 	Paint(); // required in constructor
 }
 
@@ -9,19 +8,14 @@ void StoreMenu::OutputOptions()
 {
 	Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 	Line("Credits: ");
+	Line();	
+	for (int i = 0; i < app->GetStore().GetGames().length(); i++)
+	{
+		// adding 1 so the display is nicer for the user
+		Option(i + 1, app->GetStore().GetGames()[i]->GetName());
+	}
 	Line();
-	if (filteredGames.length() == 0) {
-		Line("No results found.");
-	}
-	else {		
-		for (int i = 0; i < filteredGames.length(); i++)
-		{
-			// adding 1 so the display is nicer for the user
-			Option(i + 1, filteredGames[i]->GetName());
-		}
-		Line();
-		Option('S', "Search store");
-	}
+	Option('S', "Search store");
 }
 
 bool StoreMenu::HandleChoice(char choice)

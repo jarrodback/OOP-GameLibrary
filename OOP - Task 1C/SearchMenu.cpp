@@ -25,6 +25,7 @@ bool SearchMenu::HandleChoice(char choice)
 					filteredGames.deleteOne(filteredGames[i - 1]);
 				}
 			}
+			SearchResults("SHOWING RESULTS", app, filteredGames);
 		} break;
 		case 'P': {
 			Line("Enter a price range (e.g. 5-10): ");
@@ -34,7 +35,8 @@ bool SearchMenu::HandleChoice(char choice)
 					filteredGames.deleteOne(filteredGames[i - 1]);
 				}
 			}
-		} break;
+			SearchResults("SHOWING RESULTS", app, filteredGames);
+		} break;		
 	}
 	return false;
 }

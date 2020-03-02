@@ -1,5 +1,6 @@
 #pragma once
 #include "Menu.h"
+#include "SearchResults.h"
 
 class SearchMenu : public Menu
 {
@@ -10,4 +11,6 @@ class SearchMenu : public Menu
 	private:
 	  List<Game*> filteredGames;
 };
+
+
 
