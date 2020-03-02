@@ -17,6 +17,15 @@ bool Application::IsUserLoggedIn() const
 	return currentUser != nullptr;
 }
 
+bool Application::IsUserAdmin() const
+{
+	Admin* ptr = dynamic_cast<Admin*>(currentUser);
+	if (ptr) {
+		return true;
+	}
+	return false;
+}
+
 bool Application::IsAccountLoggedIn() const
 {
 	return currentAccount != nullptr;

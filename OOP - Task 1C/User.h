@@ -2,6 +2,7 @@
 
 #include <string>
 #include "Date.h"
+
 class User
 {
 	public:
