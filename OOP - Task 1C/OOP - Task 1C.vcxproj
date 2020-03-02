@@ -158,6 +158,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProfileMenu.cpp" />
     <ClCompile Include="RemoveUserMenu.cpp" />
+    <ClCompile Include="SearchMenu.cpp" />
+    <ClCompile Include="SearchResults.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Store.cpp" />
     <ClCompile Include="StoreMenu.cpp" />
@@ -178,6 +180,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="ProfileMenu.h" />
     <ClInclude Include="RemoveUserMenu.h" />
+    <ClInclude Include="SearchMenu.h" />
+    <ClInclude Include="SearchResults.h" />
     <ClInclude Include="Store.h" />
     <ClInclude Include="StoreMenu.h" />
     <ClInclude Include="User.h" />
