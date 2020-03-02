@@ -16,12 +16,24 @@ void ProfileMenu::OutputOptions()
 	if (app->IsUserAdmin()) {
 		Line();
 		Line("ADMIN");
-		Option(1, "Create Player");
-		Option(2, "Remove Player");
+		Option('A', "Create Player");
+		Option('B', "Remove Player");
 	}
 }
 
 bool ProfileMenu::HandleChoice(char choice)
 {
+	switch (choice) {
+	case 'A': {
+		Line("Please enter a username: ");
+		std::string username = Utils::GetLineFromUser();
+		Line("Please enter a password: ");
+		std::string password = Utils::GetLineFromUser();
+		app->GetCurrentAccount()->users.addAtEnd(new User(username, password, Date::CurrentDate()));
+	}break;
+	case 'B': {
+		//Remove UserScreen
+	}break;
+	}
 	return false;
 }

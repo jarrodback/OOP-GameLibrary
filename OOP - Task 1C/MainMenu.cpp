@@ -12,7 +12,7 @@ void MainMenu::OutputOptions()
 	if (app->IsUserLoggedIn())
 	{
 		Option('P', "View Profile");
-		Option('L', "Logout");
+		Option('L', "Logout of User");
 	}
 	else
 	{
@@ -38,6 +38,7 @@ bool MainMenu::HandleChoice(char choice)
 				std::string answer = Question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
+					app->LogoutUser();
 				}
 			}
 			else
