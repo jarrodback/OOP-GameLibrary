@@ -44,7 +44,7 @@ User* Application::GetCurrentUser() const
 Account* Application::GetAccountFromEmail(std::string& email) const
 {
 	for (int x = 0; x < accounts.length(); x++)
-		if (accounts[x]->getEmail() == email)
+		if (accounts[x]->GetEmail() == email)
 			return accounts[x];
 	return 0;
 }
@@ -52,7 +52,7 @@ Account* Application::GetAccountFromEmail(std::string& email) const
 bool Application::DoesEmailExist(std::string& email) const
 {
 	for (int x = 0; x < accounts.length(); x++)
-		if (accounts[x]->getEmail() == email)
+		if (accounts[x]->GetEmail() == email)
 			return true;
 	return false;
 }
