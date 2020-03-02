@@ -26,18 +26,19 @@ void createHardcodedTestData()
 	Player* u3 = new Player("Charlie", "password", testDate);
 
 	//// With some games in their library
-	u1->library.addAtEnd(new LibraryItem(testDate, app.GetStore().games[7]));
-	u1->library.addAtEnd(new LibraryItem(testDate, app.GetStore().games[1]));
-	u2->library.addAtEnd(new LibraryItem(testDate, app.GetStore().games[2]));
-	u2->library.addAtEnd(new LibraryItem(testDate, app.GetStore().games[3]));
-	u3->library.addAtEnd(new LibraryItem(testDate, app.GetStore().games[3]));
-	u3->library.addAtEnd(new LibraryItem(testDate, app.GetStore().games[6]));
+	u1->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[7]));
+	u1->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[1]));
+	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[2]));
+	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
 
 	//// Make an account and attach the users
-	app.accounts.addAtEnd(new Account("alice@shu.com", "password", testDate));
-	app.accounts[0]->users.addAtEnd(u1);
-	app.accounts[0]->users.addAtEnd(u2);
-	app.accounts[0]->users.addAtEnd(u3);
+	app.AddToAccounts(new Account("alice@shu.com", "password", testDate));
+	app.GetAccounts()[0]->AddToUsers(u1);
+	app.GetAccounts()[0]->AddToUsers(u2);
+	app.GetAccounts()[0]->AddToUsers(u3);
+
 
 	//// TODO: We need a login menu for accounts, for now we log in the only account
 	//app.LoginAccount("alice@shu.ac.uk", "password");

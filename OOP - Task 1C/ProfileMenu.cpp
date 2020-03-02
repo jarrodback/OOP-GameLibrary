@@ -9,8 +9,8 @@ void ProfileMenu::OutputOptions()
 {
 	Line("GAMES");
 	Player* pPlayer = (Player*)app->GetCurrentUser();
-	for (int x = 0; x < pPlayer->library.length(); x++) {
-		Option(x + 1, pPlayer->library[x]->GetName());
+	for (int x = 0; x < pPlayer->GetLibrary().length(); x++) {
+		Option(x + 1, pPlayer->GetLibrary()[x]->GetName());
 	}
 
 	if (app->IsUserAdmin()) {
@@ -29,7 +29,7 @@ bool ProfileMenu::HandleChoice(char choice)
 		std::string username = Utils::GetLineFromUser();
 		Line("Please enter a password: ");
 		std::string password = Utils::GetLineFromUser();
-		app->GetCurrentAccount()->users.addAtEnd(new User(username, password, Date::CurrentDate()));
+		app->GetCurrentAccount()->AddToUsers(new User(username, password, Date::CurrentDate()));
 	}break;
 	case 'R': {
 		RemoveUserMenu("Remove User From Account", app);

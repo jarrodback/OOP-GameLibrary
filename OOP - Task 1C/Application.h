@@ -17,6 +17,8 @@ public:
 	bool IsUserAdmin() const;
 	Account* GetCurrentAccount() const;
 	User* GetCurrentUser() const;
+	Account* GetAccountFromEmail(std::string&) const;
+	bool DoesEmailExist(std::string&) const;
 
 	Store& GetStore();
 
@@ -25,11 +27,15 @@ public:
 	bool LoginUser(const std::string& username, const std::string& password);
 	bool LoginUser(User* const user);
 	void LogoutUser();
-	List<Account*> accounts;
 
 	void Save();
 	void Load();
+
+	const List<Account*> GetAccounts() const;
+	void AddToAccounts(Account*);
+	void RemoveFromAccounts(Account*);
 private:
+	List<Account*> accounts;
 	Store store;
 	Account* currentAccount;
 	User* currentUser;
