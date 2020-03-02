@@ -2,6 +2,7 @@
 
 #include "Menu.h"
 #include "StoreMenu.h"
+#include "LoginMenu.h"
 
 class MainMenu : public Menu
 {

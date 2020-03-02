@@ -44,15 +44,27 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 
 	return true;
 }
+bool Application::LoginAccount(Account* const account)
+{
+	// TODO: This currently always logs you in as the first account
+	currentAccount = account;
+	return true;
+}
+
+
 
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first user
 	currentUser = currentAccount->users[0];
-
 	return true;
 }
-
+bool Application::LoginUser(User* const user)
+{
+	// TODO: This currently always logs you in as the first user
+	currentUser = user;
+	return true;
+}
 void Application::LogoutUser()
 {
 	currentUser = nullptr;
