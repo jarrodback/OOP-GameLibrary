@@ -1,5 +1,6 @@
 #pragma once
 #include "Menu.h"
+#include "RemoveUserMenu.h"
 class ProfileMenu :	public Menu
 {
 public:

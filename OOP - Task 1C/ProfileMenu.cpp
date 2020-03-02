@@ -17,7 +17,7 @@ void ProfileMenu::OutputOptions()
 		Line();
 		Line("ADMIN");
 		Option('A', "Create Player");
-		Option('B', "Remove Player");
+		Option('R', "Remove Player");
 	}
 }
 
@@ -31,8 +31,8 @@ bool ProfileMenu::HandleChoice(char choice)
 		std::string password = Utils::GetLineFromUser();
 		app->GetCurrentAccount()->users.addAtEnd(new User(username, password, Date::CurrentDate()));
 	}break;
-	case 'B': {
-		//Remove UserScreen
+	case 'R': {
+		RemoveUserMenu("Remove User From Account", app);
 	}break;
 	}
 	return false;
