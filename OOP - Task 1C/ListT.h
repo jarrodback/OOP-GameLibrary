@@ -136,8 +136,8 @@ const T List<T>::operator[](const int index) const
 {
     Node<T>* pIndex = head;
     for (int x = 0; x < index; x++) 
-        assert(pIndex->next != nullptr);
         if(index != 0){
+            assert(pIndex->next != nullptr);
             pIndex = pIndex->next;
         }
     return pIndex->item;
