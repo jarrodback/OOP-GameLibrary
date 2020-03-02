@@ -34,12 +34,11 @@ bool StoreMenu::HandleChoice(char choice)
 			}
 		} break;
 		case 'P': {
-			std::vector<std::string> results;
 			Line("Enter a price range i.e 5-10: ");
 			std::string priceRange = Utils::GetLineFromUser();
-			for (int i = 0; i < filteredGames.length(); ++ i) {
-				if (Utils::inPriceRange(priceRange, app->GetStore().GetGames()[i]->GetCost())) {
-					results.push_back(app->GetStore().GetGames()[i]->GetName());
+			for (int i = filteredGames.length(); i > 0; --i) {
+				if (!Utils::inPriceRange(priceRange, app->GetStore().GetGames()[i - 1]->GetCost())) {
+					filteredGames.deleteOne(filteredGames[i - 1]);
 				}
 			}
 		} break;
