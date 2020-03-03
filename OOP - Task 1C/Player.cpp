@@ -21,14 +21,15 @@ std::ostream& Player::Write(std::ostream& os) const {
 	//Credits
 	for (int x = 0; x < library.length(); x++)
 	{
-		os << library[x];
+		return os << library[x];
 	}
 }
 
 std::ostream& operator<<(std::ostream& os, Player const& p)
 {
-
+	return os;
 }
+
 const List<LibraryItem*> Player::GetLibrary() const
 {
 	return library;

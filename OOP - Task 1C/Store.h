@@ -10,6 +10,7 @@ class Store
 		const List<Game*> GetGames() const;
 		void AddToGames(Game*);
 		void RemoveFromGames(Game*);
-	private:
 		List<Game*> games;
+
+	private:
 };

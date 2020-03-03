@@ -10,6 +10,7 @@ class Player : public User
 	public:
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
+		std::ostream& Write(std::ostream& os) const;
 		const List<LibraryItem*> GetLibrary() const;
 		void AddToLibrary(LibraryItem*);
 		void RemoveFromLibrary(LibraryItem*);

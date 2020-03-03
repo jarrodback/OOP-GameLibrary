@@ -5,6 +5,9 @@
 #include "Store.h"
 #include "ListT.h"
 #include "Admin.h"
+#include <fstream>
+#include <ostream>
+#include <iostream>
 
 class Application
 {
@@ -28,8 +31,8 @@ public:
 	bool LoginUser(User* const user);
 	void LogoutUser();
 
-	void Save();
-	void Load();
+	void Save(Game& game);
+	void Load(Game& game);
 
 	const List<Account*> GetAccounts() const;
 	void AddToAccounts(Account*);

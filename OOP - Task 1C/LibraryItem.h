@@ -11,6 +11,7 @@ class LibraryItem
 		~LibraryItem();
 		const std::string& GetName() const;
 		int GetGameID() const;
+		std::ostream& Write(std::ostream& os) const;
 		Date GetDate() const;
 	private:
 		const Game *game;

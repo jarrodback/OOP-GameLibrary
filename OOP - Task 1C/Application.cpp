@@ -76,23 +76,41 @@ bool Application::LoginAccount(Account* const account)
 	return true;
 }
 
-
-
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
 	// TODO: This currently always logs you in as the first user
 	currentUser = currentAccount->GetUsers()[0];
 	return true;
 }
+
 bool Application::LoginUser(User* const user)
 {
 	// TODO: This currently always logs you in as the first user
 	currentUser = user;
 	return true;
 }
+
 void Application::LogoutUser()
 {
 	currentUser = nullptr;
+}
+
+void Save(Game& game)
+{
+	std::ofstream fout;
+	fout.open("data.txt");
+	if (fout.fail()) std::cout << "\nError saving game.";
+	else fout << game; // operator << for Game instances
+	fout.close();
+}
+
+void Load(Game& game)
+{
+	std::ifstream fin;
+	fin.open("data.txt");
+	if (fin.fail()) std::cout << "\nError loading game.";
+	//else fin >> game;   // operator >> for Game instances
+	fin.close();
 }
 
 const List<Account*> Application::GetAccounts() const

@@ -24,23 +24,19 @@ int Game::GetCost() const
 	return cost;
 }
 
-int Game::GetAge() const
-{
-	return ageRating;
-}
 
-int Game::GetID() const
+std::ostream& Game::Write(std::ostream& os) const
 {
-	return gameID;
+	os << "GAME";
+	os << gameID;
+	os << name;
+	os << description;
+	os << cost;
+	os << ageRating;
+	return os;
 }
 
 std::ostream& operator<<(std::ostream& os, Game const& game)
 {
-	os << "GAME";
-	os << game.GetID();
-	os << game.GetName();
-	os << game.GetDescription();
-	os << game.GetCost();
-	os << game.GetAge();
-	return os;
+	return game.Write(os);
 }

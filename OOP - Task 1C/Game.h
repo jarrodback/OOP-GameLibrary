@@ -14,6 +14,7 @@ class Game
 		int GetCost() const;
 		int GetAge() const;
 		int GetID() const;
+		std::ostream& Write(std::ostream& os) const;
 	private:
 		std::string name;
 		std::string description;
