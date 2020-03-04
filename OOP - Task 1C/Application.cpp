@@ -95,16 +95,28 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
-void Save(Game& game)
+void Application::Save()
 {
 	std::ofstream fout;
 	fout.open("data.txt");
-	if (fout.fail()) std::cout << "\nError saving game.";
-	else fout << game; // operator << for Game instances
+	if (fout.fail()) std::cout << "\nError saving data.";
+	else
+	{
+		for (int i = 0; i < store.games.length(); i++)
+		{
+			fout << *store.games[i];
+		}
+
+		for (int i = 0; i < accounts.length(); i++)
+		{
+			fout << *accounts[i];
+		}
+
+	}
 	fout.close();
 }
 
-void Load(Game& game)
+void Application::Load()
 {
 	std::ifstream fin;
 	fin.open("data.txt");

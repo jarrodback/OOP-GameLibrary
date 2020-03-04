@@ -21,8 +21,10 @@ std::ostream& Player::Write(std::ostream& os) const {
 	//Credits
 	for (int x = 0; x < library.length(); x++)
 	{
-		return os << library[x];
+		os << *library[x];
 	}
+
+	return os;
 }
 
 std::ostream& operator<<(std::ostream& os, Player const& p)

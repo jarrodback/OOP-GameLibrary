@@ -31,8 +31,10 @@ public:
 	bool LoginUser(User* const user);
 	void LogoutUser();
 
-	void Save(Game& game);
-	void Load(Game& game);
+	std::ostream& Write(std::ostream& os) const;
+
+	void Save();
+	void Load();
 
 	const List<Account*> GetAccounts() const;
 	void AddToAccounts(Account*);

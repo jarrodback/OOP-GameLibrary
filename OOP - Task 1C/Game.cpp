@@ -21,18 +21,23 @@ const std::string& Game::GetDescription() const
 
 int Game::GetCost() const
 {
-	return cost;
+	return this->cost;
+}
+
+int Game::GetID() const
+{
+	return this->gameID;
 }
 
 
 std::ostream& Game::Write(std::ostream& os) const
 {
-	os << "GAME";
-	os << gameID;
-	os << name;
-	os << description;
-	os << cost;
-	os << ageRating;
+	os << "GAME" << "\n";
+	os << gameID << "\n";
+	os << name << "\n";
+	os << description << "\n";
+	os << cost << "\n";
+	os << ageRating << "\n";
 	return os;
 }
 

@@ -39,10 +39,16 @@ const bool Account::CheckPassword(std::string& password) const
 }
 
 std::ostream& Account::write(std::ostream& os) const {
-	os << "ACCOUNT";
-	os << created;
-	os << email;
-	os << password;
+	os << "ACCOUNT" << "\n";
+	os << created << "\n";
+	os << email << "\n";
+	os << password << "\n";
+
+	for (int i = 0; i < users.length(); i++)
+	{
+		os << users[i]; //* is not working
+	}
+
 	return os;
 }
 
