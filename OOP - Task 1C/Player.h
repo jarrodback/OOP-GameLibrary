@@ -12,6 +12,8 @@ class Player : public User
 		~Player();
 		const List<LibraryItem*> GetLibrary() const;
 		const int getCredits();
+		void deductCredits(int amt);
+		void addCredits(int amt);
 		void AddToLibrary(LibraryItem*);
 		void RemoveFromLibrary(LibraryItem*);		
 	private:

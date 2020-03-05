@@ -23,6 +23,17 @@ const int Player::getCredits()
 	return credits;
 }
 
+void Player::deductCredits(int amt)
+{
+	this->credits -= amt;
+}
+
+void Player::addCredits(int amt)
+{
+	this->credits += amt;
+}
+
+
 void Player::AddToLibrary(LibraryItem* libraryItem)
 {
 	library.addAtEnd(libraryItem);
