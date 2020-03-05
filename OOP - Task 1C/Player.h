@@ -8,11 +8,13 @@
 class Player : public User
 {
 	public:
-		Player(const std::string&, const std::string&, const Date&);
+		Player(const std::string&, const std::string&, const Date&, const int& credits);
 		~Player();
 		const List<LibraryItem*> GetLibrary() const;
+		const int getCredits();
 		void AddToLibrary(LibraryItem*);
-		void RemoveFromLibrary(LibraryItem*);
+		void RemoveFromLibrary(LibraryItem*);		
 	private:
 		List<LibraryItem*> library;
+		int credits;
 };

@@ -7,7 +7,11 @@ StoreMenu::StoreMenu(const std::string& title, Application* app) : Menu(title, a
 void StoreMenu::OutputOptions()
 {
 	Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
-	Line("Credits: ");
+	if (player != nullptr) {
+		Line("Credits: " + std::to_string(player->getCredits() / 100));
+	}
+	else
+		Line("You must login to purchase.");
 	Line();	
 	for (int i = 0; i < app->GetStore().GetGames().length(); i++)
 	{
