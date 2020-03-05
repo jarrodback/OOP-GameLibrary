@@ -1,5 +1,6 @@
 #include "ProfileMenu.h"
 
+
 ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(title, app)
 {
 	Paint();
@@ -10,8 +11,10 @@ void ProfileMenu::OutputOptions()
 	Line("GAMES");
 	Player* pPlayer = (Player*)app->GetCurrentUser();
 	for (int x = 0; x < pPlayer->GetLibrary().length(); x++) {
-		Option(x + 1, pPlayer->GetLibrary()[x]->GetName());
+		Option(x + 1, pPlayer->GetLibrary()[x]->GetName() + " (" + Utils::formatGametime(pPlayer->GetLibrary()[x]->getMinutesPlayed()) + ")");
 	}
+
+	
 
 	if (app->IsUserAdmin()) {
 		Line();
@@ -34,6 +37,12 @@ bool ProfileMenu::HandleChoice(char choice)
 	case 'R': {
 		RemoveUserMenu("Remove User From Account", app);
 	}break;
+	}
+
+	int index = choice - '1';
+	if (index >= 0 && index < player->GetLibrary().length())
+	{
+		player->GetLibrary()[index]->addMinutesPlayed(Utils::generateGametime());
 	}
 	return false;
 }
