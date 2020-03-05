@@ -55,9 +55,13 @@ int Utils::generateGametime()
 std::string Utils::formatGametime(int mins)
 {
 	float timePlayed = mins;
-	if (timePlayed > 59) {
-		timePlayed /= 60;
-		return std::to_string(timePlayed) + " hours";
+	if (timePlayed < 59) {
+		return std::to_string(timePlayed) + " minutes";
 	}
-	return std::to_string(timePlayed) + " mins";
+	else if (timePlayed >= 60 && timePlayed < 300) {
+		timePlayed /= 60;
+		return std::to_string((floor(timePlayed * 2)/2)) + " hour/s";
+	}
+	
+	return std::to_string((int)timePlayed / 60) + " hours";
 }

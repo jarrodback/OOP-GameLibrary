@@ -55,6 +55,14 @@ void Menu::Option(int id, const std::string& option)
 	Option(ascii, option);
 }
 
+/*void Menu::Option(int id, const std::string& option, const float& timePlayed)
+{
+	if(timePlayed < 60.0)
+		std::cout << "  " << id << ") " << option << " (" << timePlayed << std::setprecision(2) << " mins)" << '\n';
+	else
+		std::cout << "  " << id << ") " << option << " (" << timePlayed << std::setprecision(2) << " hour/s)" << '\n';
+}*/
+
 std::string Menu::Question(const std::string& question)
 {
 	std::cout << "  " << question << ": ";

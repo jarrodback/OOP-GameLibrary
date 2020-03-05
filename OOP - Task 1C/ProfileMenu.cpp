@@ -26,6 +26,7 @@ void ProfileMenu::OutputOptions()
 
 bool ProfileMenu::HandleChoice(char choice)
 {
+	Player* player = (Player*)app->GetCurrentUser();
 	switch (choice) {
 	case 'A': {
 		Line("Please enter a username: ");
