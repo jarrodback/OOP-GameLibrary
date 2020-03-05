@@ -8,7 +8,7 @@ void StoreMenu::OutputOptions()
 {
 	Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 	if (app->IsUserLoggedIn()) {
-		Line("Credits: " + std::to_string(player->getCredits() / 100)); //Needs formatting.
+		Line("Credits: " + std::to_string(player->getCredits())); //Needs formatting.
 	}
 	else
 		Line("You must login to purchase.");

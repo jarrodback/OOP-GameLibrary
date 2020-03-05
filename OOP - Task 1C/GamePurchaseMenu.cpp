@@ -9,7 +9,7 @@ void GamePurchaseMenu::OutputOptions()
 {
 	Line("Description: " + app->GetStore().GetGames()[gameID]->GetDescription());
 	Line();
-	Line("Price " + std::to_string((app->GetStore().GetGames()[gameID]->GetCost() / 100))); //Needs Formatting.
+	Line("Price " + std::to_string((app->GetStore().GetGames()[gameID]->GetCost()))); //Needs Formatting.
 	if (app->IsUserLoggedIn()) {
 		Line();
 		Option('P', "Purchase Game");
