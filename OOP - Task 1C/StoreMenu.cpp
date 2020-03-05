@@ -7,8 +7,8 @@ StoreMenu::StoreMenu(const std::string& title, Application* app) : Menu(title, a
 void StoreMenu::OutputOptions()
 {
 	Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
-	if (player != nullptr) {
-		Line("Credits: " + std::to_string(player->getCredits() / 100));
+	if (app->IsUserLoggedIn()) {
+		Line("Credits: " + std::to_string(player->getCredits() / 100)); //Needs formatting.
 	}
 	else
 		Line("You must login to purchase.");
@@ -28,7 +28,14 @@ bool StoreMenu::HandleChoice(char choice)
 		case 'S': {
 			SearchMenu("SEARCH THE STORE", app);
 		} break;
-	} 
+	}
+
+	int index = choice - '1';
+	if (index >= 0 && index < app->GetStore().GetGames().length())
+	{
+		std::string gameTitle = app->GetStore().GetGames()[index]->GetName();
+		GamePurchaseMenu(gameTitle, app, index);
+	}
 
 	return false;
 }
