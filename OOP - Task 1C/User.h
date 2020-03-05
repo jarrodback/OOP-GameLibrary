@@ -11,6 +11,8 @@ class User
 		const std::string& GetUsername() const;
 		const bool CheckPassword(std::string&) const;
 
+		std::ostream& Write(std::ostream& os);
+
 	private:
 	
 	protected:
@@ -18,3 +20,5 @@ class User
 		std::string username;
 		std::string password;
 };
+
+std::ostream& operator<<(std::ostream& os, User& p);

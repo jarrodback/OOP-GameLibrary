@@ -15,9 +15,9 @@ const std::string& LibraryItem::GetName() const
 }
 
 std::ostream& LibraryItem::Write(std::ostream& os) const {
-	os << "LIBRARY-ITEM";
-	os << game->GetID();
-	os << purchased;
+	os << "LIBRARY-ITEM" << "\n";
+	os << game->GetID() << "\n";
+	os << purchased << "\n";
 	//GET GAME TIME 
 	return os;
 }

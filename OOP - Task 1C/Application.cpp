@@ -121,6 +121,10 @@ void Application::Load()
 	std::ifstream fin;
 	fin.open("data.txt");
 	if (fin.fail()) std::cout << "\nError loading game.";
+	else
+	{
+
+	}
 	//else fin >> game;   // operator >> for Game instances
 	fin.close();
 }

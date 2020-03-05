@@ -10,13 +10,15 @@ class Player : public User
 	public:
 		Player(const std::string&, const std::string&, const Date&);
 		~Player();
-		std::ostream& Write(std::ostream& os) const;
+		std::ostream& Write(std::ostream& os);
+
 		const List<LibraryItem*> GetLibrary() const;
 		void AddToLibrary(LibraryItem*);
 		void RemoveFromLibrary(LibraryItem*);
 	private:
+		
+	protected:
 		List<LibraryItem*> library;
-
 };
 
-std::ostream& operator<<(std::ostream& os, Player const& p);
+std::ostream& operator<<(std::ostream& os, Player& p);

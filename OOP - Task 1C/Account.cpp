@@ -46,7 +46,7 @@ std::ostream& Account::write(std::ostream& os) const {
 
 	for (int i = 0; i < users.length(); i++)
 	{
-		os << users[i]; //* is not working
+		os << *users[i];
 	}
 
 	return os;
