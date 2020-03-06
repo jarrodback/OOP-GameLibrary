@@ -1,5 +1,6 @@
 #pragma once
 #include "Menu.h"
+#include "Utils.h"
 #include "RemoveUserMenu.h"
 #include <algorithm>
 

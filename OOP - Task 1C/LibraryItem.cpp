@@ -1,7 +1,7 @@
 #include "LibraryItem.h"
 
 LibraryItem::LibraryItem(const Date& date, Game* game)
-	: purchased(date), game(game)
+	: purchased(date), game(game), timePlayed(0)
 {
 }
 
@@ -27,6 +27,15 @@ std::ostream& operator<<(std::ostream& os, LibraryItem const& li)
 	return li.Write(os);
 }
 
+const int& LibraryItem::getMinutesPlayed()
+{
+	return timePlayed;
+}
+
+void LibraryItem::addMinutesPlayed(int amt)
+{
+	timePlayed += amt;
+}
 const Date LibraryItem::GetDate() const
 {
 	return purchased;
