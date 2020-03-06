@@ -125,7 +125,10 @@ void Application::Load()
 	{
 		std::string nextLine = "";
 		fin >> nextLine;
-		if (nextLine == "ACCOUNT") {
+		while (nextLine == "GAME") {
+			//load in game data
+		}
+		while (nextLine == "ACCOUNT") {
 			Date dateCreate(25, 11, 1999);
 
 			std::string dateCreated;
@@ -148,7 +151,7 @@ void Application::Load()
 					fin >> password;
 					int credits;
 					fin >> credits;
-
+					accounts[0]->AddToUsers(new User(email, password, dateCreate));
 					//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
 					fin >> nextLine;
 					while (nextLine == "LIBRARY-ITEM") {
@@ -158,13 +161,12 @@ void Application::Load()
 						fin >> dateCreated;
 						int timePlayed;
 						fin >> timePlayed;
+						Player* player = dynamic_cast<Player*>(accounts[0]->GetUsers()[0]);
+						player->AddToLibrary(new LibraryItem(dateCreate, player->GetLibrary()[0]));
 						fin >> nextLine;
 					}
 				}
 			}
-		}
-		else if (nextLine == "GAME") {
-
 		}
 	}
 	//else fin >> game;   // operator >> for Game instances
