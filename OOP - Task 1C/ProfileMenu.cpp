@@ -7,6 +7,13 @@ ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(titl
 
 void ProfileMenu::OutputOptions()
 {
+	Player* pPlayer = (Player*)app->GetCurrentUser();
+	Line("Credits: " + std::to_string(pPlayer->getCredits()));
+	Line("PURCHASE CREDITS");
+	Option('I', "Purchase 1 credit.");
+	Option('O', "Purchase 10 credits.");
+	Option('P', "Purchase 100 credits.");
+	Line();
 	Line("GAMES");
 	if (sortedList.size() == 0) {
 		Player* pPlayer = (Player*)app->GetCurrentUser();
@@ -37,6 +44,7 @@ bool SortByDates(LibraryItem* li, LibraryItem* li2) {
 }
 bool ProfileMenu::HandleChoice(char choice)
 {
+	Player* player = (Player*)app->GetCurrentUser();
 	switch (choice) {
 	case 'A': {
 		Line("Please enter a username: ");
@@ -62,6 +70,15 @@ bool ProfileMenu::HandleChoice(char choice)
 		std::sort(sortedList.begin(), sortedList.end(), SortByDates);
 	}break;
 
+	case 'I': {
+		player->addCredits(1);
+	}break;
+	case 'O': {
+		player->addCredits(10);
+	}break;
+	case 'P': {
+		player->addCredits(100);
+	}break;
 	}
 	return false;
 }

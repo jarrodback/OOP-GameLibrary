@@ -2,8 +2,11 @@
 
 #include "Menu.h"
 #include "SearchMenu.h"
+#include "GamePurchaseMenu.h"
 #include "ListT.h"
 #include <string>
+#include <iostream>
+#include <cmath>
 
 
 class StoreMenu : public Menu

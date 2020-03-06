@@ -1,8 +1,8 @@
 #include "Player.h"
 
-Player::Player(const std::string& username, const std::string& password, const Date& created)
-	: User(username, password, created)
-{
+Player::Player(const std::string& username, const std::string& password, const Date& created, const int& credits)
+	: User(username, password, created){
+	this->credits = credits;
 }
 
 Player::~Player()
@@ -17,6 +17,22 @@ std::vector<LibraryItem*> Player::GetLibrary() const
 {
 	return library;
 }
+
+const int Player::getCredits()
+{
+	return credits;
+}
+
+void Player::deductCredits(int amt)
+{
+	this->credits -= amt;
+}
+
+void Player::addCredits(int amt)
+{
+	this->credits += amt;
+}
+
 
 void Player::AddToLibrary(LibraryItem* libraryItem)
 {
