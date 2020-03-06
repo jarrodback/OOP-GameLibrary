@@ -11,8 +11,12 @@ class LibraryItem
 		const std::string& GetName() const;
 		const int& getMinutesPlayed();
 		void addMinutesPlayed(int amt);
+		const Date GetDate() const;
 	private:
 		const Game *game;
 		const Date purchased;
-		int minutesplayed;
+		int minutesplayed;		
+		const Game *game;
+		const Date purchased;
 };
+bool operator<(LibraryItem a, LibraryItem b);

@@ -22,4 +22,13 @@ const int& LibraryItem::getMinutesPlayed()
 void LibraryItem::addMinutesPlayed(int amt)
 {
 	minutesplayed += amt;
+const Date LibraryItem::GetDate() const
+{
+	return purchased;
+}
+
+
+bool operator<(LibraryItem a, LibraryItem b)
+{
+	return (a.GetName() > b.GetName());
 }

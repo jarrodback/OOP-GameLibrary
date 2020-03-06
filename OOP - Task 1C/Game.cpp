@@ -23,3 +23,4 @@ int Game::GetCost() const
 {
 	return cost;
 }
+
