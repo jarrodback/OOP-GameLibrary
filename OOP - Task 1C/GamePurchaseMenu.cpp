@@ -25,7 +25,7 @@ void GamePurchaseMenu::OutputOptions()
 		else {
 			for (int i = 0; i < player->GetLibrary().size(); ++i) {
 				if (player->GetLibrary()[i]->GetName() == game->GetName()) {
-					Line("Time Played: *TIME* (Will implement when task 4 is merged)");
+					Line("Time Played: " + Utils::formatGametime(player->GetLibrary()[i]->getMinutesPlayed()));
 					Line("Purchased on: " + std::to_string(player->GetLibrary()[i]->GetDate().getDay()) + "-" + std::to_string(player->GetLibrary()[i]->GetDate().getMonth()) + "-" + std::to_string(player->GetLibrary()[i]->GetDate().getYear()));
 				}
 			}
