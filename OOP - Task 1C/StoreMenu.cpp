@@ -12,7 +12,7 @@ void StoreMenu::OutputOptions()
 	for (int i = 0; i < app->GetStore().GetGames().length(); i++)
 	{
 		// adding 1 so the display is nicer for the user
-		Option(i + 1, app->GetStore().GetGames()[i]->GetName());
+		Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
 	}
 	Line();
 	Option('S', "Search store");
