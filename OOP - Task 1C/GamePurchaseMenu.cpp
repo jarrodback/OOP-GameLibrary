@@ -29,9 +29,8 @@ bool GamePurchaseMenu::HandleChoice(char choice)
 						inLibrary = true;
 				}
 				if (player->getCredits() >= game->GetCost() && !inLibrary)  {
-					Date purchaseDate;
 					player->deductCredits(game->GetCost());
-					player->AddToLibrary(new LibraryItem(purchaseDate.CurrentDate(), game));
+					player->AddToLibrary(new LibraryItem(Date::CurrentDate(), game));
 				}
 			break;
 		}
