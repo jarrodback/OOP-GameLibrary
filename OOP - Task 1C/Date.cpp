@@ -43,9 +43,9 @@ std::ostream& operator<<(std::ostream& os, Date const& date)
 bool operator<(Date const& d1, Date const& d2) {
 	if (d1.getYear() < d2.getYear())
 		return true;
-	else if (d1.getMonth() < d2.getMonth())
+	else if (d1.getYear() == d2.getYear() && d1.getMonth() < d2.getMonth())
 		return true;
-	else if (d1.getDay() < d2.getDay())
+	else if (d1.getYear() == d2.getYear() && d1.getMonth() == d2.getMonth() && d1.getDay() < d2.getDay())
 		return true;
 	else
 		return false;

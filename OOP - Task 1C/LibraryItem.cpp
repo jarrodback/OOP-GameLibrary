@@ -44,5 +44,5 @@ const Date LibraryItem::GetDate() const
 
 bool operator<(LibraryItem a, LibraryItem b)
 {
-	return (a.GetName() > b.GetName());
+	return (a.GetName() < b.GetName());
 }
