@@ -9,10 +9,6 @@ void StoreMenu::OutputOptions()
 	Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 	Line("Credits: ");
 	Line();	
-	for (int i = 0; i < app->GetStore().GetGames().length(); i++)
-	{
-		// adding 1 so the display is nicer for the user
-		Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
 	if (app->IsUserLoggedIn()) {
 		Line("Credits: " + std::to_string(player->getCredits())); //Needs formatting.
 		Line();
@@ -23,15 +19,15 @@ void StoreMenu::OutputOptions()
 				if (player->GetLibrary()[x]->GetName() == app->GetStore().GetGames()[i]->GetName())
 					found = true;				
 			}
-			if (found) Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (purchased)");
-			else Option(i + 1, app->GetStore().GetGames()[i]->GetName());			
+			if (found) Option(i + 1, "(purchased) " + app->GetStore().GetGames()[i]->GetName() +" (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
+			else Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
 		}
 	}
 	else {
 		Line("You must login to purchase.");
 		Line();
 		for (int i = 0; i < app->GetStore().GetGames().length(); i++)
-			Option(i + 1, app->GetStore().GetGames()[i]->GetName());
+			Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
 	}
 	Line();
 	Option('S', "Search store");

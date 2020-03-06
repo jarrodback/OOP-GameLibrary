@@ -23,11 +23,7 @@ void ProfileMenu::OutputOptions()
 	}
 	Line();
 	Option('V', "Rate a Game");
-	else {
-		for (int x = 0; x < sortedList.size(); x++) {
-			Option(x + 1, sortedList[x]->GetName());
-		}
-	}
+
 	Line();
 	Line("SORT BY");
 	Option('N', "Sort by Name");
@@ -39,6 +35,11 @@ void ProfileMenu::OutputOptions()
 		Line("ADMIN");
 		Option('A', "Create Player");
 		Option('R', "Remove Player");
+	}
+	else {
+		for (int x = 0; x < sortedList.size(); x++) {
+			Option(x + 1, sortedList[x]->GetName());
+		}
 	}
 }
 bool SortByDates(LibraryItem* li, LibraryItem* li2) {
@@ -63,7 +64,7 @@ bool ProfileMenu::HandleChoice(char choice)
 		Line("Select a game to rate: ");
 		Player* pPlayer = dynamic_cast<Player*>(app->GetCurrentUser());
 		int index = Utils::GetCharFromUser() - '1';
-		if (index >= 0 && index < pPlayer->GetLibrary().length())
+		if (index >= 0 && index < pPlayer->GetLibrary().size())
 		{
 			Option('L', "Like");
 			Option('D', "Dislike");
