@@ -20,9 +20,7 @@ class Player : public User
 	private:
 		
 	protected:
-		List<LibraryItem*> library;
 		std::vector<LibraryItem*> library;
 		int credits;
 };
-
 std::ostream& operator<<(std::ostream& os, Player& p);
