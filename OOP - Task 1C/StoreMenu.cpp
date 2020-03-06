@@ -9,14 +9,23 @@ void StoreMenu::OutputOptions()
 	Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 	if (app->IsUserLoggedIn()) {
 		Line("Credits: " + std::to_string(player->getCredits())); //Needs formatting.
+		Line();
+		for (int i = 0; i < app->GetStore().GetGames().length(); i++)
+		{
+			bool found = false;
+			for (int x = 0; x < player->GetLibrary().size(); x++){
+				if (player->GetLibrary()[x]->GetName() == app->GetStore().GetGames()[i]->GetName())
+					found = true;				
+			}
+			if (found) Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (purchased)");
+			else Option(i + 1, app->GetStore().GetGames()[i]->GetName());			
+		}
 	}
-	else
+	else {
 		Line("You must login to purchase.");
-	Line();	
-	for (int i = 0; i < app->GetStore().GetGames().length(); i++)
-	{
-		// adding 1 so the display is nicer for the user
-		Option(i + 1, app->GetStore().GetGames()[i]->GetName());
+		Line();
+		for (int i = 0; i < app->GetStore().GetGames().length(); i++)
+			Option(i + 1, app->GetStore().GetGames()[i]->GetName());
 	}
 	Line();
 	Option('S', "Search store");

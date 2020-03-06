@@ -1,7 +1,7 @@
 #include "LibraryItem.h"
 
 LibraryItem::LibraryItem(const Date& date, Game* game)
-	: purchased(date), game(game)
+	: purchased(date), game(game), timePlayed(0)
 {
 }
 
@@ -14,6 +14,15 @@ const std::string& LibraryItem::GetName() const
 	return game->GetName();
 }
 
+const int& LibraryItem::getMinutesPlayed()
+{
+	return timePlayed;
+}
+
+void LibraryItem::addMinutesPlayed(int amt)
+{
+	timePlayed += amt;
+}
 const Date LibraryItem::GetDate() const
 {
 	return purchased;
@@ -22,5 +31,5 @@ const Date LibraryItem::GetDate() const
 
 bool operator<(LibraryItem a, LibraryItem b)
 {
-	return (a.GetName() > b.GetName());
+	return (a.GetName() < b.GetName());
 }

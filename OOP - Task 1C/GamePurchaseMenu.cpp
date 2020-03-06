@@ -7,12 +7,30 @@ GamePurchaseMenu::GamePurchaseMenu(const std::string& title, Application* app, c
 
 void GamePurchaseMenu::OutputOptions()
 {
-	Line("Description: " + app->GetStore().GetGames()[gameID]->GetDescription());
+	Game* game = app->GetStore().GetGames()[gameID];
+	bool inLibrary = false;
+	Line("Description: " + game->GetDescription());
 	Line();
 	Line("Price " + std::to_string((app->GetStore().GetGames()[gameID]->GetCost()))); //Needs Formatting.
 	if (app->IsUserLoggedIn()) {
 		Line();
-		Option('P', "Purchase Game");
+		Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
+		for (int i = 0; i < player->GetLibrary().size(); ++i) {
+			if (player->GetLibrary()[i]->GetName() == game->GetName())
+				inLibrary = true;
+		}
+		if (!inLibrary) {	
+			Option('P', "Purchase Game");
+		}
+		else {
+			for (int i = 0; i < player->GetLibrary().size(); ++i) {
+				if (player->GetLibrary()[i]->GetName() == game->GetName()) {
+					Line("Time Played: " + Utils::formatGametime(player->GetLibrary()[i]->getMinutesPlayed()));
+					Line("Purchased on: " + std::to_string(player->GetLibrary()[i]->GetDate().getDay()) + "-" + std::to_string(player->GetLibrary()[i]->GetDate().getMonth()) + "-" + std::to_string(player->GetLibrary()[i]->GetDate().getYear()));
+				}
+			}
+				
+		}
 	}
 }
 

@@ -1,5 +1,6 @@
 #include "Utils.h"
 
+
 std::string Utils::GetLineFromUser()
 {
 	std::string input;
@@ -33,7 +34,6 @@ bool Utils::inPriceRange(std::string& inputtedRange, const int& priceOfGame) { /
 		return false;
 }
 
-
 std::vector<int> Utils::splitPriceRange(std::string& inputtedRange) {
 
 	std::vector<int> prices;
@@ -44,4 +44,33 @@ std::vector<int> Utils::splitPriceRange(std::string& inputtedRange) {
 		prices.push_back(std::stoi(tempString));
 	}
 	return prices;
+}
+
+int Utils::generateGametime()
+{
+	srand(static_cast<unsigned>(time(0)));
+	return (rand() % 60) + 1;
+}
+
+std::string Utils::formatGametime(int mins)
+{
+	float timePlayed = mins;
+	if (timePlayed < 59) {
+		return std::to_string(timePlayed) + " minutes";
+	}
+	else if (timePlayed >= 60 && timePlayed < 300) {
+		timePlayed /= 60;
+		return std::to_string((floor(timePlayed * 2)/2)) + " hour/s";
+	}
+	
+	return std::to_string((int)timePlayed / 60) + " hours";
+}
+std::string Utils::toUppercaseR(std::string s) {
+	if (s.length() == 0) return "";
+	return (char)toupper(s[0]) + toUppercaseR(s.substr(1));
+}
+void Utils::toUppercase(std::string& s) {
+	for (int x = 0; x < s.length(); x++) {
+		s[x] = toupper(s[x]);
+	}
 }

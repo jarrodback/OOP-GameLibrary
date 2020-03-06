@@ -34,6 +34,14 @@ void createHardcodedTestData()
 	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
 	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
 	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
+	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
 	u3->RemoveFromLibrary(u3->GetLibrary()[1]);
 
 	//// Make an account and attach the users
@@ -44,7 +52,8 @@ void createHardcodedTestData()
 
 
 	//// TODO: We need a login menu for accounts, for now we log in the only account
-	//app.LoginAccount("alice@shu.ac.uk", "password");
+	app.LoginAccount("alice@shu.com", "password");
+	u1->addCredits(100000);
 }
 
 int main()
