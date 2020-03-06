@@ -52,7 +52,8 @@ void createHardcodedTestData()
 
 
 	//// TODO: We need a login menu for accounts, for now we log in the only account
-	//app.LoginAccount("alice@shu.ac.uk", "password");
+	app.LoginAccount("alice@shu.com", "password");
+	u1->addCredits(100000);
 }
 
 int main()
