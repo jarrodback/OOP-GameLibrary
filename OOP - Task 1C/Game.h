@@ -12,12 +12,12 @@ class Game
 		int GetCost() const;
 		void addLike();
 		void addDislike();
-		int calculateRating();
+		float calculateRating();
 	private:
 		std::string name;
 		std::string description;
 		int cost;
 		int ageRating;
-		int likes;
-		int dislikes;
+		float likes;
+		float dislikes;
 };
