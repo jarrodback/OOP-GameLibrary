@@ -11,6 +11,7 @@ void LoginMenu::OutputOptions()
 		for (int x = 0; x < app->GetCurrentAccount()->GetUsers().length(); x++) {
 			Option(x + 1, app->GetCurrentAccount()->GetUsers()[x]->GetUsername());
 		}
+		Option('G', "Guest");
 	}
 	else {
 		Option(1, "Login");
@@ -26,9 +27,11 @@ bool LoginMenu::HandleChoice(char choice)
 			Line("Enter the password: ");
 			std::string password = Utils::GetLineFromUser();
 			if (app->GetCurrentAccount()->GetUsers()[index]->CheckPassword(password)) {
-				app->LoginUser(app->GetCurrentAccount()->GetUsers()[index]);
-				return true;
+				return app->LoginUser(app->GetCurrentAccount()->GetUsers()[index]);
 			}
+		}
+		else if (choice == 'G') {
+			return app->LoginUser(app->GetCurrentAccount()->dynamic_cast<User*>(GetGuest()));
 		}
 	}
 	else {

@@ -37,3 +37,8 @@ const bool Account::CheckPassword(std::string& password) const
 {
 	return password == this->password;
 }
+
+Guest Account::GetGuest() const
+{
+	return guest;
+}

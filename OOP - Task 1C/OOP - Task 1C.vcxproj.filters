@@ -84,6 +84,9 @@
     <ClCompile Include="GamePurchaseMenu.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="Guest.cpp">
+      <Filter>Source Files\User</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="GamePurchaseMenu.h">
       <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Guest.h">
+      <Filter>Header Files\User</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
