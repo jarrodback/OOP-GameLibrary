@@ -24,7 +24,7 @@ bool GamePurchaseMenu::HandleChoice(char choice)
 		bool inLibrary = false;
 		switch (choice) {
 			case 'P':
-				for (int i = 0; i < player->GetLibrary().length(); ++i) {
+				for (int i = 0; i < player->GetLibrary().size(); ++i) {
 					if (player->GetLibrary()[i]->GetName() == game->GetName())
 						inLibrary = true;
 				}
