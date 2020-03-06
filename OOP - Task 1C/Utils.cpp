@@ -65,3 +65,12 @@ std::string Utils::formatGametime(int mins)
 	
 	return std::to_string((int)timePlayed / 60) + " hours";
 }
+std::string Utils::toUppercaseR(std::string s) {
+	if (s.length() == 0) return "";
+	return (char)toupper(s[0]) + toUppercaseR(s.substr(1));
+}
+void Utils::toUppercase(std::string& s) {
+	for (int x = 0; x < s.length(); x++) {
+		s[x] = toupper(s[x]);
+	}
+}
