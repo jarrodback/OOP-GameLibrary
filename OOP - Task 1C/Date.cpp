@@ -40,3 +40,13 @@ std::ostream& operator<<(std::ostream& os, Date const& date)
 	os << date.getDay() << "-" << date.getMonth() << "-" << date.getYear();
 	return os;
 }
+bool operator<(Date const& d1, Date const& d2) {
+	if (d1.getYear() < d2.getYear())
+		return true;
+	else if (d1.getMonth() < d2.getMonth())
+		return true;
+	else if (d1.getDay() < d2.getDay())
+		return true;
+	else
+		return false;
+}

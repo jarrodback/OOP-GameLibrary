@@ -1,8 +1,8 @@
 #include "User.h"
 
 User::User(const std::string& username, const std::string& password, const Date& created)
-	: username(username), password(password), created(created)
-{
+	: username(username), password(password), created(created){
+
 }
 
 User::~User()
