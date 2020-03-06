@@ -22,6 +22,7 @@ const int& LibraryItem::getMinutesPlayed()
 void LibraryItem::addMinutesPlayed(int amt)
 {
 	minutesplayed += amt;
+}
 const Date LibraryItem::GetDate() const
 {
 	return purchased;

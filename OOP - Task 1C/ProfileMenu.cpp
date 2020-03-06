@@ -17,26 +17,21 @@ void ProfileMenu::OutputOptions()
 	Line();
 	Line("GAMES");
 	
-	for (int x = 0; x < pPlayer->GetLibrary().length(); x++) { //???
-		Option(x + 1, pPlayer->GetLibrary()[x]->GetName() + " (" + Utils::formatGametime(pPlayer->GetLibrary()[x]->getMinutesPlayed()) + ")");
 	if (sortedList.size() == 0) {
 		Player* pPlayer = (Player*)app->GetCurrentUser();
 		for (int x = 0; x < pPlayer->GetLibrary().size(); x++) {
-			Option(x + 1, pPlayer->GetLibrary()[x]->GetName());
+			Option(x + 1, pPlayer->GetLibrary()[x]->GetName() + " (" + Utils::formatGametime(pPlayer->GetLibrary()[x]->getMinutesPlayed()) + ")");
 		}
 	}
 	else {
 		for (int x = 0; x < sortedList.size(); x++) {
-			Option(x + 1, sortedList[x]->GetName());
+			Option(x + 1, sortedList[x]->GetName() + " (" + Utils::formatGametime(pPlayer->GetLibrary()[x]->getMinutesPlayed()) + ")");
 		}
 	}
 	Line();
 	Line("SORT BY");
 	Option('N', "Sort by Name");
 	Option('D', "Sort by Date Purchased");
-
-
-	
 
 	if (app->IsUserAdmin()) {
 		Line();
@@ -88,7 +83,7 @@ bool ProfileMenu::HandleChoice(char choice)
 	}
 
 	int index = choice - '1';
-	if (index >= 0 && index < player->GetLibrary().length())
+	if (index >= 0 && index < player->GetLibrary().size())
 	{
 		player->GetLibrary()[index]->addMinutesPlayed(Utils::generateGametime());
 	}
