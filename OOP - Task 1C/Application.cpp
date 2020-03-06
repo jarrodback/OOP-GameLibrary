@@ -123,10 +123,49 @@ void Application::Load()
 	if (fin.fail()) std::cout << "\nError loading game.";
 	else
 	{
-	 //   std::string str;
-		//while (std::getline(file, str)) {
-		//	std::cout << str << "\n";
-		//}
+		std::string nextLine = "";
+		fin >> nextLine;
+		if (nextLine == "ACCOUNT") {
+			Date dateCreate(25, 11, 1999);
+
+			std::string dateCreated;
+			fin >> dateCreated;
+			std::string email;
+			fin >> email;
+			std::string password;
+			fin >> password;
+			accounts.addInFront(new Account(email, password, dateCreate));
+			fin >> nextLine;
+			while (nextLine == "ACCOUNT-PLAYER" || "ACCOUNT-ADMIN") {
+				if (nextLine == "ACCOUNT-PLAYER") {
+					Date dateCreate(25, 11, 1999);
+
+					std::string dateCreated;
+					fin >> dateCreated;
+					std::string email;
+					fin >> email;
+					std::string password;
+					fin >> password;
+					int credits;
+					fin >> credits;
+
+					//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
+					fin >> nextLine;
+					while (nextLine == "LIBRARY-ITEM") {
+						int gameID;
+						fin >> gameID;
+						std::string dateCreated;
+						fin >> dateCreated;
+						int timePlayed;
+						fin >> timePlayed;
+						fin >> nextLine;
+					}
+				}
+			}
+		}
+		else if (nextLine == "GAME") {
+
+		}
 	}
 	//else fin >> game;   // operator >> for Game instances
 	fin.close();
