@@ -46,6 +46,7 @@ void createHardcodedTestData()
 
 int main()
 {
+	app.Load();
 	createHardcodedTestData();
 	MainMenu("MAIN MENU", &app);
 	app.Save();

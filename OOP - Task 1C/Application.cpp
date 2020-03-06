@@ -123,7 +123,10 @@ void Application::Load()
 	if (fin.fail()) std::cout << "\nError loading game.";
 	else
 	{
-
+	    std::string str;
+		while (std::getline(file, str)) {
+			std::cout << str << "\n";
+		}
 	}
 	//else fin >> game;   // operator >> for Game instances
 	fin.close();
