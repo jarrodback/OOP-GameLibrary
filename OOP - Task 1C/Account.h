@@ -15,11 +15,11 @@ class Account
 		void RemoveFromUsers(User*);
 		std::string GetEmail();
 		const bool CheckPassword(std::string&) const;
-		Guest GetGuest() const;
+		Guest* GetGuest() const;
 	private:
 		std::string email;
 		std::string password;
 		Date created; 
 		List<User*> users;
-		static Guest guest;
+		Guest* guest;
 };

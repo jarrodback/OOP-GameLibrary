@@ -8,7 +8,8 @@ ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(titl
 
 void ProfileMenu::OutputOptions()
 {
-	Player* pPlayer = (Player*)app->GetCurrentUser();
+	Player* pPlayer = dynamic_cast<Player*>(app->GetCurrentUser());
+	if(pPlayer)
 	Line("Credits: " + std::to_string(pPlayer->getCredits()));
 	Line("PURCHASE CREDITS");
 	Option('I', "Purchase 1 credit.");

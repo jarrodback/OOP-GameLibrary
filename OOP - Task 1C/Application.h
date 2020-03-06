@@ -24,7 +24,6 @@ public:
 
 	bool LoginAccount(const std::string& email, const std::string& password);
 	bool LoginAccount(Account* const account);
-	bool LoginUser(const std::string& username, const std::string& password);
 	bool LoginUser(User* const user);
 	void LogoutUser();
 

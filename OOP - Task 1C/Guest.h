@@ -5,7 +5,7 @@
 class Guest : public User
 {
 public:
-	Guest(const std::string&, const std::string&, const Date&, const int& credits);
+	Guest(const std::string& username, const std::string& password, const Date& created);
 	~Guest();
 	std::vector<LibraryItem*> GetLibrary() const;
 	void AddToLibrary(LibraryItem*);

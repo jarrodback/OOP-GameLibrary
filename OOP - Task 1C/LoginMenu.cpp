@@ -31,7 +31,7 @@ bool LoginMenu::HandleChoice(char choice)
 			}
 		}
 		else if (choice == 'G') {
-			return app->LoginUser(app->GetCurrentAccount()->dynamic_cast<User*>(GetGuest()));
+			return app->LoginUser(dynamic_cast<Guest*>(app->GetCurrentAccount()->GetGuest()));
 		}
 	}
 	else {

@@ -1,8 +1,6 @@
 #include "Guest.h"
 
-Guest::Guest(const std::string& username, const std::string& password, const Date& created, const int& credits)
-	: User(username, password, created) 
-{
+Guest::Guest(const std::string& username, const std::string& password, const Date& created)	: User(username, password, created) {
 }
 
 Guest::~Guest()
