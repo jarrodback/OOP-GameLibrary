@@ -1,7 +1,7 @@
 #include "LibraryItem.h"
 
 LibraryItem::LibraryItem(const Date& date, Game* game)
-	: purchased(date), game(game), minutesplayed(0)
+	: purchased(date), game(game), timePlayed(0)
 {
 }
 
@@ -16,12 +16,12 @@ const std::string& LibraryItem::GetName() const
 
 const int& LibraryItem::getMinutesPlayed()
 {
-	return minutesplayed;
+	return timePlayed;
 }
 
 void LibraryItem::addMinutesPlayed(int amt)
 {
-	minutesplayed += amt;
+	timePlayed += amt;
 }
 const Date LibraryItem::GetDate() const
 {

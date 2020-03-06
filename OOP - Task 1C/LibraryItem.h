@@ -15,6 +15,6 @@ class LibraryItem
 	private:
 		const Game *game;
 		const Date purchased;
-		int minutesplayed;		
+		int timePlayed;		
 };
 bool operator<(LibraryItem a, LibraryItem b);
