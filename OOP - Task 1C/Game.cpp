@@ -21,7 +21,7 @@ const std::string& Game::GetDescription() const
 
 int Game::GetCost() const
 {
-	return this->cost;
+	return cost;
 }
 
 int Game::GetID() const

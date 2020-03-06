@@ -81,6 +81,9 @@
     <ClCompile Include="SearchMenu.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="GamePurchaseMenu.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User.h">
@@ -135,6 +138,9 @@
       <Filter>Header Files\Menu</Filter>
     </ClInclude>
     <ClInclude Include="SearchMenu.h">
+      <Filter>Header Files\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePurchaseMenu.h">
       <Filter>Header Files\Menu</Filter>
     </ClInclude>
   </ItemGroup>

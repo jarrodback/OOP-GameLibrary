@@ -12,9 +12,10 @@ class LibraryItem
 		const std::string& GetName() const;
 		int GetGameID() const;
 		std::ostream& Write(std::ostream& os) const;
-		Date GetDate() const;
+		const Date GetDate() const;
 	private:
 		const Game *game;
 		const Date purchased;
 };
 std::ostream& operator<<(std::ostream& os, LibraryItem const& li);
+bool operator<(LibraryItem a, LibraryItem b);

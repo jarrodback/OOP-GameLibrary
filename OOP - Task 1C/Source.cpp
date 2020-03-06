@@ -9,6 +9,8 @@ Application app;
 void createHardcodedTestData()
 {
 	Date testDate(10, 10, 1999);
+	Date testDate2(10, 10, 2020);
+
 	// Setup store with some games
 	app.GetStore().games.addAtEnd(new Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5, 0));
 	app.GetStore().games.addAtEnd(new Game("Braid", "A time twisting puzzle game.", 499, 15, 1));
@@ -21,17 +23,18 @@ void createHardcodedTestData()
 	app.GetStore().games.addAtEnd(new Game("Brothers", "Split your brain into two thumbs.", 799, 15, 8));
 
 	//// Create some users
-	Player* u1 = new Admin("Alice", "password", testDate);
-	Player* u2 = new Player("Bob", "password", testDate);
-	Player* u3 = new Player("Charlie", "password", testDate);
+	Player* u1 = new Admin("Alice", "password", testDate, 200);
+	Player* u2 = new Player("Bob", "password", testDate, 1000);
+	Player* u3 = new Player("Charlie", "password", testDate, 500);
 
 	//// With some games in their library
-	u1->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[7]));
+	u1->AddToLibrary(new LibraryItem(testDate2, app.GetStore().GetGames()[7]));
 	u1->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[1]));
 	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[2]));
 	u2->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
 	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[3]));
 	u3->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[6]));
+	u3->RemoveFromLibrary(u3->GetLibrary()[1]);
 
 	//// Make an account and attach the users
 	app.AddToAccounts(new Account("alice@shu.com", "password", testDate));

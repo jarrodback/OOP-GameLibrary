@@ -26,3 +26,14 @@ std::ostream& operator<<(std::ostream& os, LibraryItem const& li)
 {
 	return li.Write(os);
 }
+
+const Date LibraryItem::GetDate() const
+{
+	return purchased;
+}
+
+
+bool operator<(LibraryItem a, LibraryItem b)
+{
+	return (a.GetName() > b.GetName());
+}

@@ -6,6 +6,6 @@
 class Admin : public Player
 {
 	public:
-		Admin(const std::string&, const std::string&, const Date&);
+		Admin(const std::string&, const std::string&, const Date&, const int& credits);
 		~Admin();
 };

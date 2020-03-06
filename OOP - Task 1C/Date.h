@@ -16,3 +16,4 @@ public:
 
 };
 std::ostream& operator<<(std::ostream& os, Date const& date);
+bool operator<(Date const& d1, Date const& d2);
