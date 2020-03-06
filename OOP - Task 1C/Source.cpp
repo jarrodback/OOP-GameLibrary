@@ -21,9 +21,9 @@ void createHardcodedTestData()
 	app.GetStore().AddToGames(new Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	//// Create some users
-	Player* u1 = new Admin("Alice", "password", testDate);
-	Player* u2 = new Player("Bob", "password", testDate);
-	Player* u3 = new Player("Charlie", "password", testDate);
+	Player* u1 = new Admin("Alice", "password", testDate, 200);
+	Player* u2 = new Player("Bob", "password", testDate, 1000);
+	Player* u3 = new Player("Charlie", "password", testDate, 500);
 
 	//// With some games in their library
 	u1->AddToLibrary(new LibraryItem(testDate, app.GetStore().GetGames()[7]));

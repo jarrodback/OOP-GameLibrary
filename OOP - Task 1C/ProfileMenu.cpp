@@ -8,8 +8,15 @@ ProfileMenu::ProfileMenu(const std::string& title, Application* app) : Menu(titl
 
 void ProfileMenu::OutputOptions()
 {
-	Line("GAMES");
 	Player* pPlayer = (Player*)app->GetCurrentUser();
+	Line("Credits: " + std::to_string(pPlayer->getCredits()));
+	Line("PURCHASE CREDITS");
+	Option('I', "Purchase 1 credit.");
+	Option('O', "Purchase 10 credits.");
+	Option('P', "Purchase 100 credits.");
+	Line();
+	Line("GAMES");
+	
 	for (int x = 0; x < pPlayer->GetLibrary().length(); x++) {
 		Option(x + 1, pPlayer->GetLibrary()[x]->GetName() + " (" + Utils::formatGametime(pPlayer->GetLibrary()[x]->getMinutesPlayed()) + ")");
 	}
@@ -37,6 +44,15 @@ bool ProfileMenu::HandleChoice(char choice)
 	}break;
 	case 'R': {
 		RemoveUserMenu("Remove User From Account", app);
+	}break;
+	case 'I': {
+		player->addCredits(1);
+	}break;
+	case 'O': {
+		player->addCredits(10);
+	}break;
+	case 'P': {
+		player->addCredits(100);
 	}break;
 	}
 
