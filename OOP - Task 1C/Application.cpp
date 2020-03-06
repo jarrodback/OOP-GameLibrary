@@ -102,9 +102,9 @@ void Application::Save()
 	if (fout.fail()) std::cout << "\nError saving data.";
 	else
 	{
-		for (int i = 0; i < store.games.length(); i++)
+		for (int i = 0; i < store.GetGames().length(); i++)
 		{
-			fout << *store.games[i];
+			fout << *store.GetGames()[i];
 		}
 
 		for (int i = 0; i < accounts.length(); i++)
