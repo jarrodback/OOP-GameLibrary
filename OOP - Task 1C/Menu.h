@@ -35,7 +35,6 @@ class Menu
 
 	private:
 		std::string title_;
-
 		void Header();
 		void Footer();
 };
