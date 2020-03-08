@@ -11,10 +11,28 @@ void SearchMenu::OutputOptions()
 	Line("Searching ", " Games.", filteredGames.length());
 	Line();
 	if (filteredGames.length() > 0) {
-		for (int i = 0; i < filteredGames.length(); i++)
-		{
-			// adding 1 so the display is nicer for the user
-			Option(i + 1, filteredGames[i]->GetName());
+		if (app->IsUserLoggedIn()) {
+			Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
+			Line("Credits: " + std::to_string(player->getCredits())); //Needs formatting.
+			Line();
+			for (int i = 0; i < filteredGames.length(); i++)
+			{
+				bool found = false;
+				for (int x = 0; x < player->GetLibrary().size(); x++) {
+					if (player->GetLibrary()[x]->GetName() == filteredGames[i]->GetName())
+						found = true;
+				}
+				if (found) Option(i + 1, filteredGames[i]->GetName() + " (purchased)");
+				else Option(i + 1, filteredGames[i]->GetName());
+			}
+		} else {
+			Line("You must login to purchase.");
+			Line();
+			for (int i = 0; i < filteredGames.length(); i++)
+			{
+				// adding 1 so the display is nicer for the user
+				Option(i + 1, filteredGames[i]->GetName());
+			}
 		}
 		Line();
 	}
@@ -47,6 +65,15 @@ bool SearchMenu::HandleChoice(char choice)
 				}
 			}
 		} break;		
+	}
+
+	if (filteredGames.length() > 0) {
+		int index = choice - '1';
+		if (index >= 0 && index < filteredGames.length())
+		{
+			std::string gameTitle = filteredGames[index]->GetName();
+			GamePurchaseMenu(gameTitle, app, index);
+		}
 	}
 	return false;
 }
