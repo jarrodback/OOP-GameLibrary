@@ -77,7 +77,6 @@ void Menu::BlockingMessage(const std::string& message)
 
 void Menu::Header()
 {
-
 #if defined _WIN32 || defined _WIN64
 	// we are running on windows so use CLS to clear the screen
 	system("CLS");
@@ -85,9 +84,8 @@ void Menu::Header()
 	// we are running on mac or linux so use CLEAR to clear the screen
 	system("CLEAR");
 #endif
-
 	std::cout << '\n';
-	std::cout << "  -= " << title_ << " =-  \n";
+	std::cout << "  -= " << Utils::toUppercaseR(title_) << " =-  \n";
 	std::cout << '\n';
 }
 
