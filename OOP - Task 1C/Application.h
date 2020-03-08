@@ -6,6 +6,7 @@
 #include "ListT.h"
 #include "Admin.h"
 #include <fstream>
+#include <sstream>
 #include <iostream>
 
 class Application

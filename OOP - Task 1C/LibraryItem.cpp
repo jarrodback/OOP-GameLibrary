@@ -19,6 +19,7 @@ std::ostream& LibraryItem::Write(std::ostream& os) const {
 	os << game->GetID() << "\n";
 	os << purchased << "\n";
 	//GET GAME TIME 
+	os << timePlayed << "\n";
 	return os;
 }
 
@@ -39,6 +40,11 @@ void LibraryItem::addMinutesPlayed(int amt)
 const Date LibraryItem::GetDate() const
 {
 	return purchased;
+}
+
+const Game LibraryItem::GetGame() const
+{
+	return *game;
 }
 
 

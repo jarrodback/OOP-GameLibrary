@@ -23,6 +23,7 @@ std::ostream& Player::Write(std::ostream& os){
 		os << created << "\n";
 		os << username << "\n";
 		os << password << "\n";
+		os << credits << "\n";
 		//Credits
 		for (int x = 0; x < library.size(); x++)
 		{
@@ -35,6 +36,7 @@ std::ostream& Player::Write(std::ostream& os){
 		os << created << "\n";
 		os << username << "\n";
 		os << password << "\n";
+		os << credits << "\n";
 		//Credits
 		for (int x = 0; x < library.size(); x++)
 		{

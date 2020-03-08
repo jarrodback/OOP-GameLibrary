@@ -6,7 +6,7 @@ Application::Application() : currentAccount(nullptr), currentUser(nullptr)
 
 Application::~Application()
 {
-	for (int i = 0; i < 1; ++i)
+	for (int i = 0; i < accounts.length(); i++)
 	{
 		delete accounts[i];
 	}
@@ -111,7 +111,7 @@ void Application::Save()
 		{
 			fout << *accounts[i];
 		}
-
+		fout << "END OF FILE";
 	}
 	fout.close();
 }
@@ -124,13 +124,41 @@ void Application::Load()
 	else
 	{
 		std::string nextLine = "";
-		fin >> nextLine;
+		std::getline(fin, nextLine);
 		while (nextLine == "GAME") {
-			//load in game data
+
+			int count = 0;
+			int cost, age, gameID;
+			std::string name, desc;
+
+			while (std::getline(fin, nextLine) && nextLine != "GAME" && nextLine != "ACCOUNT")
+			{
+				std::stringstream linestream(nextLine);
+
+				switch (count) {
+				case 0:
+					gameID = std::stoi(nextLine);
+					break;
+				case 1:
+					name = nextLine;
+					break;
+				case 2:
+					desc = nextLine;
+					break;
+				case 3:
+					cost = std::stoi(nextLine);
+					break;
+				case 4:
+					age = std::stoi(nextLine);
+					break;
+				}
+
+				count++;
+			}
+			GetStore().AddToGames(new Game(name, desc, cost, age, gameID));
 		}
 		while (nextLine == "ACCOUNT") {
 			Date dateCreate(25, 11, 1999);
-
 			std::string dateCreated;
 			fin >> dateCreated;
 			std::string email;
@@ -139,10 +167,10 @@ void Application::Load()
 			fin >> password;
 			accounts.addInFront(new Account(email, password, dateCreate));
 			fin >> nextLine;
-			while (nextLine == "ACCOUNT-PLAYER" || "ACCOUNT-ADMIN") {
+			while (nextLine == "ACCOUNT-PLAYER" || nextLine == "ACCOUNT-ADMIN")
+			{
 				if (nextLine == "ACCOUNT-PLAYER") {
 					Date dateCreate(25, 11, 1999);
-
 					std::string dateCreated;
 					fin >> dateCreated;
 					std::string email;
@@ -151,7 +179,7 @@ void Application::Load()
 					fin >> password;
 					int credits;
 					fin >> credits;
-					accounts[0]->AddToUsers(new User(email, password, dateCreate));
+					accounts[0]->AddToUsers(new Player(email, password, dateCreate, credits));
 					//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
 					fin >> nextLine;
 					while (nextLine == "LIBRARY-ITEM") {
@@ -161,15 +189,68 @@ void Application::Load()
 						fin >> dateCreated;
 						int timePlayed;
 						fin >> timePlayed;
-						Player* player = dynamic_cast<Player*>(accounts[0]->GetUsers()[0]);
-						player->AddToLibrary(new LibraryItem(dateCreate, player->GetLibrary()[0]));
+						for (int i = 0; i < accounts[0]->GetUsers().length(); i++)
+						{
+							if (accounts[0]->GetUsers()[i]->GetUsername() == email)
+							{
+								Player* player = dynamic_cast<Player*>(accounts[0]->GetUsers()[i]);
+								for (int x = 0; x < GetStore().GetGames().length(); x++)
+								{
+									if (GetStore().GetGames()[x]->GetID() == gameID)
+									{
+										player->AddToLibrary(new LibraryItem(dateCreate, GetStore().GetGames()[x]));//Need to add game in parameter 
+									}
+								}
+							}
+						}
+						
 						fin >> nextLine;
+					}
+				}
+				else
+				{
+					if (nextLine == "ACCOUNT-ADMIN")
+					{
+						Date dateCreate(25, 11, 1999);
+						std::string dateCreated;
+						fin >> dateCreated;
+						std::string email;
+						fin >> email;
+						std::string password;
+						fin >> password;
+						int credits;
+						fin >> credits;
+						accounts[0]->AddToUsers(new Admin(email, password, dateCreate, credits));
+						//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
+						fin >> nextLine;
+						while (nextLine == "LIBRARY-ITEM") {
+							int gameID;
+							fin >> gameID;
+							std::string dateCreated;
+							fin >> dateCreated;
+							int timePlayed;
+							fin >> timePlayed;
+							for (int i = 0; i < accounts[0]->GetUsers().length(); i++)
+							{
+								if (accounts[0]->GetUsers()[i]->GetUsername() == email)
+								{
+									Player* player = dynamic_cast<Player*>(accounts[0]->GetUsers()[i]);
+									for (int x = 0; x < GetStore().GetGames().length(); x++)
+									{
+										if (GetStore().GetGames()[x]->GetID() == gameID)
+										{
+											player->AddToLibrary(new LibraryItem(dateCreate, GetStore().GetGames()[x]));//Need to add game in parameter 
+										}
+									}
+								}
+							}
+							fin >> nextLine;
+						}
 					}
 				}
 			}
 		}
 	}
-	//else fin >> game;   // operator >> for Game instances
 	fin.close();
 }
 

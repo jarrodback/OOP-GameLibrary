@@ -12,5 +12,4 @@ class Store
 		void RemoveFromGames(Game*);
 	private:
 		List<Game*> games;
-
 };
