@@ -7,39 +7,28 @@ LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, a
 
 void LoginMenu::OutputOptions()
 {
-	if (app->IsAccountLoggedIn()) {
-		for (int x = 0; x < app->GetCurrentAccount()->GetUsers().length(); x++) {
+	if (app->IsAccountLoggedIn()) 
+		for (int x = 0; x < app->GetCurrentAccount()->GetUsers().length(); x++) 
 			Option(x + 1, app->GetCurrentAccount()->GetUsers()[x]->GetUsername());
-		}
-	}
-	else {
-		Option(1, "Login");
-	}
 }
 
 bool LoginMenu::HandleChoice(char choice)
 {
 	int index = choice - '1';
-	if (app->IsAccountLoggedIn()) {
-		if (index >= 0 && index < app->GetCurrentAccount()->GetUsers().length())
-		{
-			Line("Enter the password: ");
-			std::string password = Utils::GetLineFromUser();
-			if (app->GetCurrentAccount()->GetUsers()[index]->CheckPassword(password)) {
-				app->LoginUser(app->GetCurrentAccount()->GetUsers()[index]);
-				return true;
-			}
+	if (!app->IsAccountLoggedIn()) {
+		std::string email = Question("Please enter your email");
+		if (app->DoesEmailExist(email)) {
+			std::string password = Question("Enter the password");
+			if (app->GetAccountFromEmail(email)->CheckPassword(password)) 
+				return app->LoginAccount(app->GetAccountFromEmail(email));
 		}
 	}
 	else {
-		Line("Please enter your email: ");
-		std::string email = Utils::GetLineFromUser();
-		if (app->DoesEmailExist(email)) {
-			Line("Enter the password: ");
-			std::string password = Utils::GetLineFromUser();
-			if (app->GetAccountFromEmail(email)->CheckPassword(password)) {
-				app->LoginAccount(app->GetAccountFromEmail(email));
-			}
+		if (index >= 0 && index < app->GetCurrentAccount()->GetUsers().length())
+		{
+		std::string password = Question("Enter the password");
+			if (app->GetCurrentAccount()->GetUsers()[index]->CheckPassword(password)) 
+				return app->LoginUser(app->GetCurrentAccount()->GetUsers()[index]);
 		}
 	}
 	return false;

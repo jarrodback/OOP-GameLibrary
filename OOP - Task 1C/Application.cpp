@@ -2,10 +2,12 @@
 
 Application::Application() : currentAccount(nullptr), currentUser(nullptr)
 {
+	Load();
 }
 
 Application::~Application()
 {
+	Save();
 	for (int i = 0; i < accounts.length(); i++)
 	{
 		delete accounts[i];
@@ -61,31 +63,14 @@ Store& Application::GetStore()
 {
 	return store;
 }
-
-bool Application::LoginAccount(const std::string& email, const std::string& password)
-{
-	// TODO: This currently always logs you in as the first account
-	currentAccount = accounts[0];
-
-	return true;
-}
 bool Application::LoginAccount(Account* const account)
 {
-	// TODO: This currently always logs you in as the first account
 	currentAccount = account;
-	return true;
-}
-
-bool Application::LoginUser(const std::string& username, const std::string& password)
-{
-	// TODO: This currently always logs you in as the first user
-	currentUser = currentAccount->GetUsers()[0];
 	return true;
 }
 
 bool Application::LoginUser(User* const user)
 {
-	// TODO: This currently always logs you in as the first user
 	currentUser = user;
 	return true;
 }
@@ -103,14 +88,11 @@ void Application::Save()
 	else
 	{
 		for (int i = 0; i < store.GetGames().length(); i++)
-		{
 			fout << *store.GetGames()[i];
-		}
 
 		for (int i = 0; i < accounts.length(); i++)
-		{
 			fout << *accounts[i];
-		}
+
 		fout << "END OF FILE";
 	}
 	fout.close();
@@ -157,52 +139,42 @@ void Application::Load()
 			}
 			GetStore().AddToGames(new Game(name, desc, cost, age, gameID));
 		}
+		int accountCount = -1;
 		while (nextLine == "ACCOUNT") {
-			Date dateCreate(25, 11, 1999);
-			std::string dateCreated;
-			fin >> dateCreated;
-			std::string email;
-			fin >> email;
-			std::string password;
-			fin >> password;
-			accounts.addInFront(new Account(email, password, dateCreate));
+			accountCount++;
+			//Create Account
+			Date dateCreated;
+			std::string email, password;
+			fin >> dateCreated >> email >> password;
+			accounts.addInFront(new Account(email,password,dateCreated));
+
 			fin >> nextLine;
 			while (nextLine == "ACCOUNT-PLAYER" || nextLine == "ACCOUNT-ADMIN")
 			{
 				if (nextLine == "ACCOUNT-PLAYER") {
-					Date dateCreate(25, 11, 1999);
-					std::string dateCreated;
-					fin >> dateCreated;
-					std::string email;
-					fin >> email;
-					std::string password;
-					fin >> password;
+					//Create Player
+					Date dateCreated;
+					std::string username, password;
 					int credits;
-					fin >> credits;
-					accounts[0]->AddToUsers(new Player(email, password, dateCreate, credits));
-					//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
+					fin >> dateCreated >> username >> password >> credits;
+					accounts[0]->AddToUsers(new Player(username, password, dateCreated, credits));
+
 					fin >> nextLine;
+				
+					//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
 					while (nextLine == "LIBRARY-ITEM") {
-						int gameID;
-						fin >> gameID;
-						std::string dateCreated;
-						fin >> dateCreated;
-						int timePlayed;
-						fin >> timePlayed;
-						for (int i = 0; i < accounts[0]->GetUsers().length(); i++)
-						{
-							if (accounts[0]->GetUsers()[i]->GetUsername() == email)
+						//Create LibraryItem
+						int gameID, timePlayed;
+						Date dateCreated;
+						fin >> gameID >> dateCreated >> timePlayed;
+						for (int i = 0; i < accounts[accountCount]->GetUsers().length(); i++)
+							if (accounts[accountCount]->GetUsers()[i]->GetUsername() == username)
 							{
-								Player* player = dynamic_cast<Player*>(accounts[0]->GetUsers()[i]);
+								Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
 								for (int x = 0; x < GetStore().GetGames().length(); x++)
-								{
 									if (GetStore().GetGames()[x]->GetID() == gameID)
-									{
-										player->AddToLibrary(new LibraryItem(dateCreate, GetStore().GetGames()[x]));//Need to add game in parameter 
-									}
-								}
+										player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x]));
 							}
-						}
 						
 						fin >> nextLine;
 					}
@@ -211,39 +183,30 @@ void Application::Load()
 				{
 					if (nextLine == "ACCOUNT-ADMIN")
 					{
-						Date dateCreate(25, 11, 1999);
-						std::string dateCreated;
-						fin >> dateCreated;
-						std::string email;
-						fin >> email;
-						std::string password;
-						fin >> password;
+						//Create Admin
+						Date dateCreated;
+						std::string username, password;
 						int credits;
-						fin >> credits;
-						accounts[0]->AddToUsers(new Admin(email, password, dateCreate, credits));
-						//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
+						fin >> dateCreated >> username >> password >> credits;
+						accounts[accountCount]->AddToUsers(new Admin(username, password, dateCreated, credits));
+						
 						fin >> nextLine;
+						
+						//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
 						while (nextLine == "LIBRARY-ITEM") {
-							int gameID;
-							fin >> gameID;
-							std::string dateCreated;
-							fin >> dateCreated;
-							int timePlayed;
-							fin >> timePlayed;
-							for (int i = 0; i < accounts[0]->GetUsers().length(); i++)
-							{
-								if (accounts[0]->GetUsers()[i]->GetUsername() == email)
+							//Create LibraryItem
+							int gameID, timePlayed;
+							Date dateCreated;
+							fin >> gameID >> dateCreated >> timePlayed;
+							for (int i = 0; i < accounts[accountCount]->GetUsers().length(); i++)
+								if (accounts[accountCount]->GetUsers()[i]->GetUsername() == username)
 								{
-									Player* player = dynamic_cast<Player*>(accounts[0]->GetUsers()[i]);
+									Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
 									for (int x = 0; x < GetStore().GetGames().length(); x++)
-									{
 										if (GetStore().GetGames()[x]->GetID() == gameID)
-										{
-											player->AddToLibrary(new LibraryItem(dateCreate, GetStore().GetGames()[x]));//Need to add game in parameter 
-										}
-									}
+											player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x]));
 								}
-							}
+
 							fin >> nextLine;
 						}
 					}

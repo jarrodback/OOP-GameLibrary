@@ -10,7 +10,6 @@ class LibraryItem
 		LibraryItem(const Date&, Game*);
 		~LibraryItem();
 		const std::string& GetName() const;
-		int GetGameID() const;
 		std::ostream& Write(std::ostream& os) const;
 		const int& getMinutesPlayed();
 		void addMinutesPlayed(int amt);
