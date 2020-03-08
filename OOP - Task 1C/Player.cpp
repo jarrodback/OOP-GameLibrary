@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Admin.h"
 
 Player::Player(const std::string& username, const std::string& password, const Date& created, const int& credits)
 	: User(username, password, created){
@@ -11,6 +12,43 @@ Player::~Player()
 	{
 		delete library[i];
 	}
+}
+
+std::ostream& Player::Write(std::ostream& os){
+
+	Admin* ptr = dynamic_cast<Admin*>(this);
+	if (ptr)
+	{
+		os << "ACCOUNT-ADMIN" << "\n";
+		os << created << "\n";
+		os << username << "\n";
+		os << password << "\n";
+		os << credits << "\n";
+		//Credits
+		for (int x = 0; x < library.size(); x++)
+		{
+			os << *library[x];
+		}
+		return os;
+	}
+	else {
+		os << "ACCOUNT-PLAYER" << "\n";
+		os << created << "\n";
+		os << username << "\n";
+		os << password << "\n";
+		os << credits << "\n";
+		//Credits
+		for (int x = 0; x < library.size(); x++)
+		{
+			os << *library[x];
+		}
+		return os;
+	}
+}
+
+std::ostream& operator<<(std::ostream& os, Player& p)
+{
+	return p.Write(os);
 }
 
 std::vector<LibraryItem*> Player::GetLibrary() const

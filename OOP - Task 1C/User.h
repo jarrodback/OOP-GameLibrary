@@ -10,8 +10,15 @@ class User
 		virtual ~User();
 		const std::string& GetUsername() const;
 		const bool CheckPassword(std::string&) const;
+
+		std::ostream& Write(std::ostream& os);
+
 	private:
+	
+	protected:
+		Date created;  
 		std::string username;
 		std::string password;
-		Date created;
 };
+
+std::ostream& operator<<(std::ostream& os, User& p);

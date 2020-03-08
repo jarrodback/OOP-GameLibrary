@@ -1,0 +1,94 @@
+GAME
+0
+The Witness
+Explore a nice island and solve puzzles.
+2999
+5
+GAME
+1
+Braid
+A time twisting puzzle game.
+499
+15
+GAME
+2
+Factorio
+Build a complicated factory in space.
+1599
+12
+GAME
+3
+LIMBO
+Watch out for that spider.
+299
+12
+GAME
+4
+INSIDE
+What are those scientists even doing?!
+1299
+15
+GAME
+5
+Portal 2
+Play around with physics. Shoot the moon.
+1999
+15
+GAME
+6
+Half Life 3
+It's never coming out.
+5999
+18
+GAME
+7
+NUVAVULT
+A game where 2D and 3D collide.
+299
+18
+GAME
+8
+Brothers
+Split your brain into two thumbs.
+799
+15
+ACCOUNT
+25-11-1999
+alice@shu.com
+password
+ACCOUNT-ADMIN
+25-11-1999
+Alice
+password
+100200
+LIBRARY-ITEM
+7
+25-11-1999
+0
+ACCOUNT-PLAYER
+25-11-1999
+Bob
+password
+1600
+LIBRARY-ITEM
+1
+25-11-1999
+0
+LIBRARY-ITEM
+2
+25-11-1999
+0
+ACCOUNT-PLAYER
+25-11-1999
+Charlie
+password
+1600
+LIBRARY-ITEM
+3
+25-11-1999
+0
+LIBRARY-ITEM
+3
+25-11-1999
+0
+END OF FILE
