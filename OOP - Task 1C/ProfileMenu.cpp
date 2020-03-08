@@ -52,7 +52,7 @@ bool ProfileMenu::HandleChoice(char choice)
 		std::string username = Utils::GetLineFromUser();
 		Line("Please enter a password: ");
 		std::string password = Utils::GetLineFromUser();
-		app->GetCurrentAccount()->AddToUsers(new User(username, password, Date::CurrentDate()));
+		app->GetCurrentAccount()->AddToUsers(new Player(username, password, Date::CurrentDate(),0));
 	}break;
 
 	case 'R': {
