@@ -68,14 +68,22 @@ bool ProfileMenu::HandleChoice(char choice)
 	}break;
 
 	case 'N': {
-		Player* pPlayer = (Player*)app->GetCurrentUser();
-		sortedList = pPlayer->GetLibrary();
+		Player* pPlayer = dynamic_cast<Player*>(app->GetCurrentUser());
+		Guest* pGuest = dynamic_cast<Guest*>(app->GetCurrentUser());
+		if (pPlayer)
+			sortedList = pPlayer->GetLibrary();
+		else if (pGuest)
+			sortedList = pGuest->GetLibrary();
 		std::sort(sortedList.begin(), sortedList.end(), SortByName);
 	}break;
 
 	case 'D': {
-		Player* pPlayer = (Player*)app->GetCurrentUser();
-		sortedList = pPlayer->GetLibrary();
+		Player* pPlayer = dynamic_cast<Player*>(app->GetCurrentUser());
+		Guest* pGuest = dynamic_cast<Guest*>(app->GetCurrentUser());
+		if (pPlayer)
+			sortedList = pPlayer->GetLibrary();
+		else if (pGuest)
+			sortedList = pGuest->GetLibrary();
 		std::sort(sortedList.begin(), sortedList.end(), SortByDates);
 	}break;
 	case 'X': {
