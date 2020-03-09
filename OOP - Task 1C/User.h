@@ -7,6 +7,7 @@ class User
 {
 	public:
 		User(const std::string&, const std::string&, const Date&);
+		User(const std::string&);
 		virtual ~User();
 		const std::string& GetUsername() const;
 		const bool CheckPassword(std::string&) const;

@@ -18,6 +18,7 @@ public:
 	bool IsAccountLoggedIn() const;
 	bool IsUserLoggedIn() const;
 	bool IsUserAdmin() const;
+	bool IsUserGuest() const;
 	Account* GetCurrentAccount() const;
 	User* GetCurrentUser() const;
 	Account* GetAccountFromEmail(std::string&) const;

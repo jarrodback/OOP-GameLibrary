@@ -3,6 +3,7 @@
 #include <string>
 #include "Player.h"
 #include "ListT.h"
+#include "Guest.h"
 #include <ostream>
 
 class Account
@@ -15,12 +16,14 @@ class Account
 		void RemoveFromUsers(User*);
 		std::string GetEmail();
 		const bool CheckPassword(std::string&) const;
+		Guest* GetGuest() const;
 		std::ostream& write(std::ostream& os) const;
 	private:
 		std::string email;
 		std::string password;
 		Date created; 
 		List<User*> users;
+		Guest* guest;
 };
 
 std::ostream& operator<<(std::ostream& os, Account const& a);
