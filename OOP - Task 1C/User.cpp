@@ -28,7 +28,14 @@ std::ostream& User::Write(std::ostream& os){
 	}
 	else
 	{
-		return os;
+		Guest* ptr = dynamice_cast<Guest*>(this);
+		if (ptr) {
+			return ptr->Write(os);
+		}
+		else
+		{
+			return os;
+		}
 	}
 }
 

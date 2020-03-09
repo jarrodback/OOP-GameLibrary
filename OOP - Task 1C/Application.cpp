@@ -184,9 +184,10 @@ void Application::Load()
 								Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
 								for (int x = 0; x < GetStore().GetGames().length(); x++)
 									if (GetStore().GetGames()[x]->GetID() == gameID)
-										player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x]));
+									{
+										player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
+									}
 							}
-						
 						fin >> nextLine;
 					}
 				}
@@ -215,7 +216,7 @@ void Application::Load()
 									Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
 									for (int x = 0; x < GetStore().GetGames().length(); x++)
 										if (GetStore().GetGames()[x]->GetID() == gameID)
-											player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x]));
+											player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
 								}
 
 							fin >> nextLine;

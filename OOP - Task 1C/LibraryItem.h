@@ -7,7 +7,7 @@
 class LibraryItem
 {
 	public:
-		LibraryItem(const Date&, Game*);
+		LibraryItem(const Date&, Game*, int);
 		~LibraryItem();
 		const std::string& GetName() const;
 		std::ostream& Write(std::ostream& os) const;
