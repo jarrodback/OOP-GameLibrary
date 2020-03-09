@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Admin.h"
 
-Player::Player(const std::string& username, const std::string& password, const Date& created, const int& credits)
+Player::Player(const std::string& username, const std::string& password, const Date& created, const float& credits)
 	: User(username, password, created){
 	this->credits = credits;
 }
@@ -61,17 +61,18 @@ bool Player::DoesLibraryContain(LibraryItem* libraryItem) const {
 			return true;
 	return false;
 }
-const int Player::getCredits()
+
+const float Player::getCredits()
 {
 	return credits;
 }
 
-void Player::deductCredits(int amt)
+void Player::deductCredits(float amt)
 {
 	this->credits -= amt;
 }
 
-void Player::addCredits(int amt)
+void Player::addCredits(float amt)
 {
 	this->credits += amt;
 }

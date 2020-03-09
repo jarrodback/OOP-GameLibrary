@@ -11,7 +11,9 @@ void GamePurchaseMenu::OutputOptions()
 	bool inLibrary = false;
 	Line("Description: " + game->GetDescription());
 	Line();
-	Line("Price " + std::to_string((app->GetStore().GetGames()[gameID]->GetCost()))); //Needs Formatting.
+	std::stringstream stream;
+	stream << std::fixed << std::setprecision(2) << app->GetStore().GetGames()[gameID]->GetCost() / 100;
+	Line("Price " + stream.str());
 	if (app->IsUserLoggedIn() && !app->IsUserGuest()) {
 		Line();
 		Player* player = dynamic_cast<Player*>(app->GetCurrentUser());

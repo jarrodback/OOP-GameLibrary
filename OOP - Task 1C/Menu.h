@@ -4,6 +4,7 @@
 #include "Application.h"
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 class Menu
@@ -26,9 +27,7 @@ class Menu
 
 		void Line();										// output blank line
 		void Line(const std::string& text);					// output message
-		void Line(const std::string& text1, const std::string& text2, const int& num);
 		void Option(int id, const std::string& option);		// output menu option
-		void Option(int id, const std::string& option, const float& timePlayed);		// output menu option
 		void Option(char id, const std::string& option);	// output menu option
 		std::string Question(const std::string& question);	// output question and return the user's input
 		void BlockingMessage(const std::string& message);	// output message and wait for the use to press enter

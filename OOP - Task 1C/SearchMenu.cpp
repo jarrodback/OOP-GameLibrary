@@ -8,12 +8,16 @@ SearchMenu::SearchMenu(const std::string& title, Application* app) : Menu(title,
 
 void SearchMenu::OutputOptions()
 {
-	Line("Searching ", " Games.", filteredGames.length());
+	std::stringstream stream;
+	stream << std::fixed << std::setprecision(0) << filteredGames.length();
+	Line("Searching " + stream.str() + " Games.");
 	Line();
 	if (filteredGames.length() > 0) {
 		if (app->IsUserLoggedIn() && !app->IsUserGuest()) {
 			Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
-			Line("Credits: " + std::to_string(player->getCredits())); //Needs formatting.
+			std::stringstream stream;
+			stream << std::fixed << std::setprecision(2) << player->getCredits() / 100;
+			Line("Credits: " + stream.str()); //Needs formatting.
 			Line();
 			for (int i = 0; i < filteredGames.length(); i++)
 			{
@@ -22,8 +26,16 @@ void SearchMenu::OutputOptions()
 					if (player->GetLibrary()[x]->GetName() == filteredGames[i]->GetName())
 						found = true;
 				}
-				if (found) Option(i + 1, filteredGames[i]->GetName() + " (purchased)");
-				else Option(i + 1, filteredGames[i]->GetName());
+				if (found) {
+					std::stringstream stream;
+					stream << filteredGames[i]->GetName() << " (Rating: " << std::fixed << std::setprecision(0) << filteredGames[i]->calculateRating() << "%) - Purchased";
+					Option(i + 1, stream.str());
+				}
+				else {
+					std::stringstream stream;
+					stream << filteredGames[i]->GetName() << " (Rating: " << std::fixed << std::setprecision(0) << filteredGames[i]->calculateRating() << "%)";
+					Option(i + 1, stream.str());
+				}
 			}
 		} else {
 			if (app->IsUserGuest())
@@ -33,8 +45,9 @@ void SearchMenu::OutputOptions()
 			Line();
 			for (int i = 0; i < filteredGames.length(); i++)
 			{
-				// adding 1 so the display is nicer for the user
-				Option(i + 1, filteredGames[i]->GetName());
+				std::stringstream stream;
+				stream << filteredGames[i]->GetName() << " (Rating: " << std::fixed << std::setprecision(0) << filteredGames[i]->calculateRating() << "%)";
+				Option(i + 1, stream.str());
 			}
 		}
 		Line();
