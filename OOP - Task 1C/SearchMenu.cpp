@@ -51,22 +51,16 @@ bool SearchMenu::HandleChoice(char choice)
 {
 	switch (choice) {
 		case 'N': {
-			Line("Enter the name of the game: ");
-			std::string search = Utils::GetLineFromUser();
-			for (int i = filteredGames.length(); i > 0; --i) {
-				if (!Utils::startsWith(search, filteredGames[i - 1]->GetName())) {
+			std::string search = Question("Enter the name of the game");
+			for (int i = filteredGames.length(); i > 0; --i) 
+				if (!Utils::startsWith(search, filteredGames[i - 1]->GetName())) 
 					filteredGames.deleteOne(filteredGames[i - 1]);
-				}
-			}
 		} break;
 		case 'P': {
-			Line("Enter a price range (e.g. 5-10): ");
-			std::string priceRange = Utils::GetLineFromUser();
-			for (int i = filteredGames.length(); i > 0; --i) {
-				if (!Utils::inPriceRange(priceRange, app->GetStore().GetGames()[i - 1]->GetCost())) {
+			std::string priceRange = Question("Enter a price range (e.g. 5-10)");
+			for (int i = filteredGames.length(); i > 0; --i) 
+				if (!Utils::inPriceRange(priceRange, app->GetStore().GetGames()[i - 1]->GetCost())) 
 					filteredGames.deleteOne(filteredGames[i - 1]);
-				}
-			}
 		} break;		
 	}
 
