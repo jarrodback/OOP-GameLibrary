@@ -11,8 +11,8 @@ void MainMenu::OutputOptions()
 
 	if (app->IsUserLoggedIn())
 	{
-		Option('P', "View Profile");
-		Option('L', "Logout of User");
+		Option('P', "View Profile of " + app->GetCurrentUser()->GetUsername());
+		Option('L', "Logout of " + app->GetCurrentUser()->GetUsername());
 	}
 	else
 	{
@@ -57,7 +57,7 @@ bool MainMenu::HandleChoice(char choice)
 		{
 			// this needs to go to a profile page - similar to StoreMenu
 			// notice the if - this only works if somebody is logged in
-			ProfileMenu("PROFILE", app);
+			ProfileMenu(app->GetCurrentUser()->GetUsername() + "'s PROFILE", app);
 		}
 	} break;
 	}

@@ -55,14 +55,6 @@ void Menu::Option(int id, const std::string& option)
 	Option(ascii, option);
 }
 
-/*void Menu::Option(int id, const std::string& option, const float& timePlayed)
-{
-	if(timePlayed < 60.0)
-		std::cout << "  " << id << ") " << option << " (" << timePlayed << std::setprecision(2) << " mins)" << '\n';
-	else
-		std::cout << "  " << id << ") " << option << " (" << timePlayed << std::setprecision(2) << " hour/s)" << '\n';
-}*/
-
 std::string Menu::Question(const std::string& question)
 {
 	std::cout << "  " << question << ": ";
@@ -77,7 +69,6 @@ void Menu::BlockingMessage(const std::string& message)
 
 void Menu::Header()
 {
-
 #if defined _WIN32 || defined _WIN64
 	// we are running on windows so use CLS to clear the screen
 	system("CLS");
@@ -85,9 +76,8 @@ void Menu::Header()
 	// we are running on mac or linux so use CLEAR to clear the screen
 	system("CLEAR");
 #endif
-
 	std::cout << '\n';
-	std::cout << "  -= " << title_ << " =-  \n";
+	std::cout << "  -= " << Utils::toUppercaseR(title_) << " =-  \n";
 	std::cout << '\n';
 }
 
