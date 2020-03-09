@@ -30,7 +30,7 @@ void Guest::RemoveFromLibrary(LibraryItem* libraryItem)
 std::ostream& Guest::Write(std::ostream& os)
 {
 	// TODO: insert return statement here
-	os << "GUEST-LIBRARY";
+	os << "GUEST" << "\n";
 	for (int x = 0; x < library.size(); x++)
 	{
 		os << *library[x];

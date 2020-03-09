@@ -41,11 +41,11 @@ float Game::calculateRating()
 	int total = likes + dislikes;
 	return (likes / total) * 100;
 }
+
 int Game::GetID() const
 {
 	return this->gameID;
 }
-
 
 std::ostream& Game::Write(std::ostream& os) const
 {

@@ -126,7 +126,7 @@ void Application::Load()
 		while (nextLine == "GAME") {
 
 			int count = 0;
-			int cost, age, gameID;
+			int cost, age, gameID, like, dislike;
 			std::string name, desc;
 
 			while (std::getline(fin, nextLine) && nextLine != "GAME" && nextLine != "ACCOUNT")
@@ -149,11 +149,30 @@ void Application::Load()
 				case 4:
 					age = std::stoi(nextLine);
 					break;
+				case 5:
+					like = std::stoi(nextLine);
+					break;
+				case 6:
+					dislike = std::stoi(nextLine);
+					break;
 				}
-
 				count++;
 			}
 			GetStore().AddToGames(new Game(name, desc, cost, age, gameID));
+			for (int i = 0; i < GetStore().GetGames().length(); i++)
+			{
+				if (GetStore().GetGames()[i]->GetName() == name)
+				{
+					for (int x = 0; x < like; x++)
+					{
+						GetStore().GetGames()[i]->addLike();
+					}
+					for (int x = 0; x < dislike; x++)
+					{
+						GetStore().GetGames()[i]->addDislike();
+					}
+				}
+			}
 		}
 		int accountCount = -1;
 		while (nextLine == "ACCOUNT") {
@@ -165,23 +184,29 @@ void Application::Load()
 			accounts.addInFront(new Account(email,password,dateCreated));
 
 			fin >> nextLine;
-			while (nextLine == "ACCOUNT-PLAYER" || nextLine == "ACCOUNT-ADMIN")
+			while (nextLine == "ACCOUNT-PLAYER" || nextLine == "ACCOUNT-ADMIN" || nextLine == "GUEST")
 			{
 				std::string accountType = nextLine;
-				//Create Player
 				Date dateCreated;
 				std::string username, password;
 				int credits;
-				fin >> dateCreated >> username >> password >> credits;
 
-				if (accountType == "ACCOUNT-PLAYER")
+				if (accountType == "ACCOUNT-PLAYER" || nextLine == "ACCOUNT-ADMIN")
 				{
-					accounts[accountCount]->AddToUsers(new Player(username, password, dateCreated, credits));
+					fin >> dateCreated >> username >> password >> credits;
+					if (accountType == "ACCOUNT-PLAYER")
+					{
+						accounts[accountCount]->AddToUsers(new Player(username, password, dateCreated, credits));
+					}
+					else if (accountType == "ACCOUNT-ADMIN")
+					{
+						accounts[accountCount]->AddToUsers(new Admin(username, password, dateCreated, credits));
+					}
 				}
-				else if (accountType == "ACCOUNT-ADMIN")
-				{
-					accounts[accountCount]->AddToUsers(new Admin(username, password, dateCreated, credits));
-				}
+				//else if (accountType == "GUEST")
+				//{
+				//	accounts[accountCount]->AddToUsers(new Guest());
+				//}
 				fin >> nextLine;
 				//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
 				while (nextLine == "LIBRARY-ITEM") {
@@ -189,16 +214,29 @@ void Application::Load()
 					int gameID, timePlayed;
 					Date dateCreated;
 					fin >> gameID >> dateCreated >> timePlayed;
-					for (int i = 0; i < accounts[accountCount]->GetUsers().length(); i++)
-						if (accounts[accountCount]->GetUsers()[i]->GetUsername() == username)
-						{
-							Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
-							for (int x = 0; x < GetStore().GetGames().length(); x++)
-								if (GetStore().GetGames()[x]->GetID() == gameID)
-								{
-									player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
-								}
-						}
+
+					if (accountType != "GUEST")
+					{
+						for (int i = 0; i < accounts[accountCount]->GetUsers().length(); i++)
+							if (accounts[accountCount]->GetUsers()[i]->GetUsername() == username)
+							{
+								Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
+								for (int x = 0; x < GetStore().GetGames().length(); x++)
+									if (GetStore().GetGames()[x]->GetID() == gameID)
+									{
+										player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
+									}
+							}
+					}
+					else
+					{
+						Guest* guest = dynamic_cast<Guest*>(accounts[accountCount]->GetGuest());
+						for (int x = 0; x < GetStore().GetGames().length(); x++)
+							if (GetStore().GetGames()[x]->GetID() == gameID)
+							{
+								guest->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
+							}
+					}
 					fin >> nextLine;
 				}
 			}
