@@ -1,5 +1,7 @@
 #include "Date.h"
 #include <ctime>
+#include <sstream>
+#include <vector>
 
 int Date::getDay() const
 {
@@ -40,12 +42,25 @@ std::ostream& operator<<(std::ostream& os, Date const& date)
 	os << date.getDay() << "-" << date.getMonth() << "-" << date.getYear();
 	return os;
 }
+std::istream& operator>>(std::istream& is, Date& date)
+{
+	std::vector<std::string> tokens;
+	std::string s;
+	is >> s;
+	std::stringstream dateString(s);
+	std::string temp;
+	while (getline(dateString, temp, '-')) 
+		tokens.push_back(temp);
+	date =  Date(stoi(tokens[0]), std::stoi(tokens[1]), std::stoi(tokens[2]));
+	return is;
+
+}
 bool operator<(Date const& d1, Date const& d2) {
 	if (d1.getYear() < d2.getYear())
 		return true;
-	else if (d1.getMonth() < d2.getMonth())
+	else if (d1.getYear() == d2.getYear() && d1.getMonth() < d2.getMonth())
 		return true;
-	else if (d1.getDay() < d2.getDay())
+	else if (d1.getYear() == d2.getYear() && d1.getMonth() == d2.getMonth() && d1.getDay() < d2.getDay())
 		return true;
 	else
 		return false;

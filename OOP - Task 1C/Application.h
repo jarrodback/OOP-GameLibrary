@@ -5,6 +5,9 @@
 #include "Store.h"
 #include "ListT.h"
 #include "Admin.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 class Application
 {
@@ -19,19 +22,18 @@ public:
 	User* GetCurrentUser() const;
 	Account* GetAccountFromEmail(std::string&) const;
 	bool DoesEmailExist(std::string&) const;
-
 	Store& GetStore();
-
-	bool LoginAccount(const std::string& email, const std::string& password);
-	bool LoginAccount(Account* const account);
-	bool LoginUser(const std::string& username, const std::string& password);
+	//bool LoginAccount(Account* const account);
+	bool LoginAccount(std::string& username, std::string& password);
 	bool LoginUser(User* const user);
 	void LogoutUser();
-
+	std::ostream& Write(std::ostream& os) const;
 	const List<Account*> GetAccounts() const;
 	void AddToAccounts(Account*);
 	void RemoveFromAccounts(Account*);
 private:
+	void Load();
+	void Save();
 	List<Account*> accounts;
 	Store store;
 	Account* currentAccount;

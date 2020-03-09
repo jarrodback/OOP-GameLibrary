@@ -49,16 +49,18 @@ void ProfileMenu::OutputOptions()
 bool SortByDates(LibraryItem* li, LibraryItem* li2) {
 	return (li->GetDate() < li2->GetDate());
 }
+bool SortByName(LibraryItem* li, LibraryItem* li2) {
+	return (li->GetName() < li2->GetName());
+}
 bool ProfileMenu::HandleChoice(char choice)
 {
 	Player* player = (Player*)app->GetCurrentUser();
 	switch (choice) {
 	case 'A': {
-		Line("Please enter a username: ");
-		std::string username = Utils::GetLineFromUser();
-		Line("Please enter a password: ");
-		std::string password = Utils::GetLineFromUser();
-		app->GetCurrentAccount()->AddToUsers(new User(username, password, Date::CurrentDate()));
+		
+		std::string username = Question("Please enter a username");
+		std::string password = Question("Please enter a password");
+		app->GetCurrentAccount()->AddToUsers(new Player(username, password, Date::CurrentDate(),0));
 	}break;
 
 	case 'R': {
@@ -91,7 +93,7 @@ bool ProfileMenu::HandleChoice(char choice)
 	case 'N': {
 		Player* pPlayer = (Player*)app->GetCurrentUser();
 		sortedList = pPlayer->GetLibrary();
-		std::sort(sortedList.begin(), sortedList.end());
+		std::sort(sortedList.begin(), sortedList.end(), SortByName);
 	}break;
 
 	case 'D': {

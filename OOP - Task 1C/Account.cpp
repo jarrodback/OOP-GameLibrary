@@ -7,7 +7,7 @@ Account::Account(const std::string& email, const std::string& password, const Da
 
 Account::~Account()
 {
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < users.length(); ++i)
 	{
 		delete users[i];
 	}
@@ -36,4 +36,23 @@ std::string Account::GetEmail()
 const bool Account::CheckPassword(std::string& password) const
 {
 	return password == this->password;
+}
+
+std::ostream& Account::write(std::ostream& os) const {
+	os << "ACCOUNT" << "\n";
+	os << created << "\n";
+	os << email << "\n";
+	os << password << "\n";
+
+	for (int i = 0; i < users.length(); i++)
+	{
+		os << *users[i];
+	}
+
+	return os;
+}
+
+std::ostream& operator<<(std::ostream& os, Account const& a)
+{
+	return a.write(os);
 }
