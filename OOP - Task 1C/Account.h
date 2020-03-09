@@ -25,7 +25,6 @@ class Account
 		List<User*> users;
 		Guest* guest;
 };
-};
 
 std::ostream& operator<<(std::ostream& os, Account const& a);
 

@@ -12,7 +12,7 @@ void GamePurchaseMenu::OutputOptions()
 	Line("Description: " + game->GetDescription());
 	Line();
 	Line("Price " + std::to_string((app->GetStore().GetGames()[gameID]->GetCost()))); //Needs Formatting.
-	if (app->IsUserLoggedIn()) {
+	if (app->IsUserLoggedIn() && !app->IsUserGuest()) {
 		Line();
 		Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 		for (int i = 0; i < player->GetLibrary().size(); ++i) {

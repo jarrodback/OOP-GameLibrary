@@ -28,6 +28,15 @@ bool Application::IsUserAdmin() const
 	return false;
 }
 
+bool Application::IsUserGuest() const
+{
+	Guest* ptr = dynamic_cast<Guest*>(currentUser);
+	if (ptr) {
+		return true;
+	}
+	return false;
+}
+
 bool Application::IsAccountLoggedIn() const
 {
 	return currentAccount != nullptr;
@@ -63,11 +72,7 @@ Store& Application::GetStore()
 {
 	return store;
 }
-//bool Application::LoginAccount(Account* const account)
-//{
-//	currentAccount = account;
-//	return true;
-//}
+
 bool Application::LoginAccount(std::string& email, std::string& password)
 {
 	for (int x = 0; x < accounts.length(); x++)

@@ -7,6 +7,10 @@ User::User(const std::string& username, const std::string& password, const Date&
 
 }
 
+User::User(const std::string& username) : username(username)
+{
+}
+
 User::~User()
 {
 }

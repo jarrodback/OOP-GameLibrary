@@ -3,7 +3,7 @@
 Account::Account(const std::string& email, const std::string& password, const Date& created)
 	: email(email), password(password), created(created)
 {
-	guest = new Guest("Guest", "", created);
+	guest = new Guest();
 }
 
 Account::~Account()

@@ -11,7 +11,7 @@ void SearchMenu::OutputOptions()
 	Line("Searching ", " Games.", filteredGames.length());
 	Line();
 	if (filteredGames.length() > 0) {
-		if (app->IsUserLoggedIn()) {
+		if (app->IsUserLoggedIn() && !app->IsUserGuest()) {
 			Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 			Line("Credits: " + std::to_string(player->getCredits())); //Needs formatting.
 			Line();
@@ -26,7 +26,10 @@ void SearchMenu::OutputOptions()
 				else Option(i + 1, filteredGames[i]->GetName());
 			}
 		} else {
-			Line("You must login to purchase.");
+			if (app->IsUserGuest())
+				Line("You must be a registered user to buy from the store.");
+			else
+				Line("You must login to purchase.");
 			Line();
 			for (int i = 0; i < filteredGames.length(); i++)
 			{
