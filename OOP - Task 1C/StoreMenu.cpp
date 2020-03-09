@@ -19,9 +19,9 @@ void StoreMenu::OutputOptions()
 					if (player->GetLibrary()[x]->GetName() == app->GetStore().GetGames()[i]->GetName())
 						found = true;				
 				}
+				if (found) Option(i + 1, "(purchased) " + app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
+				else Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
 			}
-			if (found) Option(i + 1, "(purchased) " + app->GetStore().GetGames()[i]->GetName() +" (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
-			else Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
 		}
 	}
 	else {
