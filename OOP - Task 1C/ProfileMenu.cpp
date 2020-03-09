@@ -31,7 +31,8 @@ void ProfileMenu::OutputOptions()
 			}
 		}
 
-	}else {
+	}
+	else {
 		for (int x = 0; x < sortedList.size(); x++) {
 			Option(x + 1, sortedList[x]->GetName() + " - Playtime: " + Utils::formatGametime(sortedList[x]->getMinutesPlayed()));
 		}
@@ -54,11 +55,6 @@ void ProfileMenu::OutputOptions()
 		Line("GUEST SETTINGS");
 		Option('X', "Add Game to Guest Library");
 		Option('Z', "Remove Game from Guest Library");
-	}
-	else {
-		for (int x = 0; x < sortedList.size(); x++) {
-			Option(x + 1, sortedList[x]->GetName());
-		}
 	}
 }
 bool SortByDates(LibraryItem* li, LibraryItem* li2) {
@@ -136,7 +132,7 @@ bool ProfileMenu::HandleChoice(char choice)
 		std::string choice = Question("Enter the ID of the game you wish to remove");
 		int index = stoi(choice) - 1;
 		if (index >= 0 && index < player->GetLibrary().size() && index < app->GetCurrentAccount()->GetGuest()->GetLibrary().size())
-			if(player->DoesLibraryContain(app->GetCurrentAccount()->GetGuest()->GetLibrary()[index]))
+			if (player->DoesLibraryContain(app->GetCurrentAccount()->GetGuest()->GetLibrary()[index]))
 				app->GetCurrentAccount()->GetGuest()->RemoveFromLibrary(player->GetLibrary()[index]);
 
 	}break;
@@ -152,9 +148,17 @@ bool ProfileMenu::HandleChoice(char choice)
 	}
 
 	int index = choice - '1';
-	if (index >= 0 && index < player->GetLibrary().size())
-	{
-		player->GetLibrary()[index]->addMinutesPlayed(Utils::generateGametime());
+	if (sortedList.size() > 0) {
+		if (index >= 0 && index < sortedList.size())
+		{
+			sortedList[index]->addMinutesPlayed(Utils::generateGametime());
+		}
+	}
+	else if (sortedList.size() == 0) {
+		if (index >= 0 && index < player->GetLibrary().size())
+		{
+			player->GetLibrary()[index]->addMinutesPlayed(Utils::generateGametime());
+		}
 	}
 	return false;
 }

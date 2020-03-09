@@ -12,15 +12,20 @@ void LoginMenu::OutputOptions()
 			Option(x, app->GetCurrentAccount()->GetUsers()[x]->GetUsername());
 		Option('G', app->GetCurrentAccount()->GetGuest()->GetUsername());
 	}
+	else {
+		Option('L', "Login");
+	}
 }
 
 bool LoginMenu::HandleChoice(char choice)
 {
 	int index = choice - '0';
 	if (!app->IsAccountLoggedIn()) {
-		std::string email = Question("Please enter your email");
-		std::string password = Question("Enter the password");
-		return app->LoginAccount(email, password);
+		if (choice == 'L') {
+			std::string email = Question("Please enter your email");
+			std::string password = Question("Enter the password");
+			return app->LoginAccount(email, password);
+		}
 	}
 	else {
 		if (index >= 1 && index < app->GetCurrentAccount()->GetUsers().length())
