@@ -23,7 +23,6 @@ class Account
 		std::string password;
 		Date created; 
 		List<User*> users;
-		Guest* guest;
 };
 
 std::ostream& operator<<(std::ostream& os, Account const& a);

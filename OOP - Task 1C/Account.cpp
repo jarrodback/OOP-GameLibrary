@@ -3,7 +3,7 @@
 Account::Account(const std::string& email, const std::string& password, const Date& created)
 	: email(email), password(password), created(created)
 {
-	guest = new Guest();
+	users.addInFront(new Guest);
 }
 
 Account::~Account()
@@ -41,7 +41,7 @@ const bool Account::CheckPassword(std::string& password) const
 
 Guest* Account::GetGuest() const
 {
-	return guest;
+	return dynamic_cast<Guest*>(users[0]);
 }
 std::ostream& Account::write(std::ostream& os) const {
 	os << "ACCOUNT" << "\n";
