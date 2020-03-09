@@ -7,9 +7,11 @@ LoginMenu::LoginMenu(const std::string& title, Application* app) : Menu(title, a
 
 void LoginMenu::OutputOptions()
 {
-	if (app->IsAccountLoggedIn())
+	if (app->IsAccountLoggedIn()) {
 		for (int x = 0; x < app->GetCurrentAccount()->GetUsers().length(); x++)
 			Option(x + 1, app->GetCurrentAccount()->GetUsers()[x]->GetUsername());
+		Option('G', app->GetCurrentAccount()->GetGuest()->GetUsername());
+	}
 }
 
 bool LoginMenu::HandleChoice(char choice)
@@ -26,6 +28,9 @@ bool LoginMenu::HandleChoice(char choice)
 			std::string password = Question("Enter the password");
 			if (app->GetCurrentAccount()->GetUsers()[index]->CheckPassword(password))
 				return app->LoginUser(app->GetCurrentAccount()->GetUsers()[index]);
+		}
+		if (choice == 'G') {
+			return app->LoginUser(app->GetCurrentAccount()->GetGuest());
 		}
 	}
 	return false;
