@@ -1,6 +1,7 @@
 #include "User.h"
 #include "Player.h"
 #include "Admin.h"
+#include "Guest.h"
 
 User::User(const std::string& username, const std::string& password, const Date& created)
 	: username(username), password(password), created(created){
@@ -26,9 +27,15 @@ const bool User::CheckPassword(std::string& password) const
 }
 
 std::ostream& User::Write(std::ostream& os){
-	Player* ptr = dynamic_cast<Player*>(this);
-	if (ptr) {
-		return ptr->Write(os);
+	Player* pPlayer = dynamic_cast<Player*>(this);
+	Guest* pGuest = dynamic_cast<Guest*>(this);
+
+	if (pPlayer) {
+		return pPlayer->Write(os);
+	}
+	else if(pGuest)
+	{
+		return pGuest->Write(os);
 	}
 	else
 	{

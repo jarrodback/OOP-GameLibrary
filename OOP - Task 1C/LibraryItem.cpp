@@ -1,7 +1,7 @@
 #include "LibraryItem.h"
 
-LibraryItem::LibraryItem(const Date& date, Game* game)
-	: purchased(date), game(game), timePlayed(0)
+LibraryItem::LibraryItem(const Date& date, Game* game, int timePlayed)
+	: purchased(date), game(game), timePlayed(timePlayed)
 {
 }
 
@@ -18,7 +18,6 @@ std::ostream& LibraryItem::Write(std::ostream& os) const {
 	os << "LIBRARY-ITEM" << "\n";
 	os << game->GetID() << "\n";
 	os << purchased << "\n";
-	//GET GAME TIME 
 	os << timePlayed << "\n";
 	return os;
 }
