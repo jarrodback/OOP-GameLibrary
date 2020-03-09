@@ -55,6 +55,8 @@ std::ostream& Game::Write(std::ostream& os) const
 	os << description << "\n";
 	os << cost << "\n";
 	os << ageRating << "\n";
+	os << likes << "\n";
+	os << dislikes << "\n";
 	return os;
 }
 

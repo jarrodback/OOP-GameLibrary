@@ -167,66 +167,39 @@ void Application::Load()
 			fin >> nextLine;
 			while (nextLine == "ACCOUNT-PLAYER" || nextLine == "ACCOUNT-ADMIN")
 			{
-				if (nextLine == "ACCOUNT-PLAYER") {
-					//Create Player
-					Date dateCreated;
-					std::string username, password;
-					int credits;
-					fin >> dateCreated >> username >> password >> credits;
-					accounts[0]->AddToUsers(new Player(username, password, dateCreated, credits));
+				std::string accountType = nextLine;
+				//Create Player
+				Date dateCreated;
+				std::string username, password;
+				int credits;
+				fin >> dateCreated >> username >> password >> credits;
 
-					fin >> nextLine;
-				
-					//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
-					while (nextLine == "LIBRARY-ITEM") {
-						//Create LibraryItem
-						int gameID, timePlayed;
-						Date dateCreated;
-						fin >> gameID >> dateCreated >> timePlayed;
-						for (int i = 0; i < accounts[accountCount]->GetUsers().length(); i++)
-							if (accounts[accountCount]->GetUsers()[i]->GetUsername() == username)
-							{
-								Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
-								for (int x = 0; x < GetStore().GetGames().length(); x++)
-									if (GetStore().GetGames()[x]->GetID() == gameID)
-									{
-										player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
-									}
-							}
-						fin >> nextLine;
-					}
-				}
-				else
+				if (accountType == "ACCOUNT-PLAYER")
 				{
-					if (nextLine == "ACCOUNT-ADMIN")
-					{
-						//Create Admin
-						Date dateCreated;
-						std::string username, password;
-						int credits;
-						fin >> dateCreated >> username >> password >> credits;
-						accounts[accountCount]->AddToUsers(new Admin(username, password, dateCreated, credits));
-						
-						fin >> nextLine;
-						
-						//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
-						while (nextLine == "LIBRARY-ITEM") {
-							//Create LibraryItem
-							int gameID, timePlayed;
-							Date dateCreated;
-							fin >> gameID >> dateCreated >> timePlayed;
-							for (int i = 0; i < accounts[accountCount]->GetUsers().length(); i++)
-								if (accounts[accountCount]->GetUsers()[i]->GetUsername() == username)
+					accounts[accountCount]->AddToUsers(new Player(username, password, dateCreated, credits));
+				}
+				else if (accountType == "ACCOUNT-ADMIN")
+				{
+					accounts[accountCount]->AddToUsers(new Admin(username, password, dateCreated, credits));
+				}
+				fin >> nextLine;
+				//CHECK IF NEXT LINE IS LIBRARY ITEM OR ANOTHER USER
+				while (nextLine == "LIBRARY-ITEM") {
+					//Create LibraryItem
+					int gameID, timePlayed;
+					Date dateCreated;
+					fin >> gameID >> dateCreated >> timePlayed;
+					for (int i = 0; i < accounts[accountCount]->GetUsers().length(); i++)
+						if (accounts[accountCount]->GetUsers()[i]->GetUsername() == username)
+						{
+							Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
+							for (int x = 0; x < GetStore().GetGames().length(); x++)
+								if (GetStore().GetGames()[x]->GetID() == gameID)
 								{
-									Player* player = dynamic_cast<Player*>(accounts[accountCount]->GetUsers()[i]);
-									for (int x = 0; x < GetStore().GetGames().length(); x++)
-										if (GetStore().GetGames()[x]->GetID() == gameID)
-											player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
+									player->AddToLibrary(new LibraryItem(dateCreated, GetStore().GetGames()[x], timePlayed));
 								}
-
-							fin >> nextLine;
 						}
-					}
+					fin >> nextLine;
 				}
 			}
 		}
