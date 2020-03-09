@@ -63,10 +63,21 @@ Store& Application::GetStore()
 {
 	return store;
 }
-bool Application::LoginAccount(Account* const account)
+//bool Application::LoginAccount(Account* const account)
+//{
+//	currentAccount = account;
+//	return true;
+//}
+bool Application::LoginAccount(std::string& email, std::string& password)
 {
-	currentAccount = account;
-	return true;
+	for (int x = 0; x < accounts.length(); x++)
+		if (accounts[x]->GetEmail() == email){
+			if (accounts[x]->CheckPassword(password)) {
+				currentAccount = accounts[x];
+				return true;
+			}
+		}
+	return false;
 }
 
 bool Application::LoginUser(User* const user)
