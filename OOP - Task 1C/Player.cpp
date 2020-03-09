@@ -55,7 +55,12 @@ std::vector<LibraryItem*> Player::GetLibrary() const
 {
 	return library;
 }
-
+bool Player::DoesLibraryContain(LibraryItem* libraryItem) const {
+	for (int x = 0; x < library.size(); x++)
+		if (library.at(x) == libraryItem)
+			return true;
+	return false;
+}
 const int Player::getCredits()
 {
 	return credits;

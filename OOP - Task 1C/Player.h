@@ -16,7 +16,9 @@ class Player : public User
 		void deductCredits(int amt);
 		void addCredits(int amt);
 		void AddToLibrary(LibraryItem*);
-		void RemoveFromLibrary(LibraryItem*);		
+		void RemoveFromLibrary(LibraryItem*);	
+		bool DoesLibraryContain(LibraryItem* libraryItem) const;
+
 	private:
 		
 	protected:
@@ -24,3 +26,4 @@ class Player : public User
 		int credits;
 };
 std::ostream& operator<<(std::ostream& os, Player& p);
+

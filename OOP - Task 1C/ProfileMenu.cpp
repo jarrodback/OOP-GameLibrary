@@ -118,14 +118,16 @@ bool ProfileMenu::HandleChoice(char choice)
 	case 'X': {
 		std::string choice = Question("Enter the ID of the game you wish to add");
 		int index = stoi(choice) - 1;
-		if (index >= 0 && index < player->GetLibrary().size())
+		if (index >= 0 && index < player->GetLibrary().size() && player->DoesLibraryContain(player->GetLibrary()[index]))
 			app->GetCurrentAccount()->GetGuest()->AddToLibrary(player->GetLibrary()[index]);
 	}break;
 	case 'Z': {
 		std::string choice = Question("Enter the ID of the game you wish to remove");
 		int index = stoi(choice) - 1;
-		if (index >= 0 && index < player->GetLibrary().size())
-			app->GetCurrentAccount()->GetGuest()->RemoveFromLibrary(player->GetLibrary()[index]);
+		if (index >= 0 && index < player->GetLibrary().size() && index < app->GetCurrentAccount()->GetGuest()->GetLibrary().size())
+			if(player->DoesLibraryContain(app->GetCurrentAccount()->GetGuest()->GetLibrary()[index]))
+				app->GetCurrentAccount()->GetGuest()->RemoveFromLibrary(player->GetLibrary()[index]);
+
 	}break;
 	case 'I': {
 		player->addCredits(1);
