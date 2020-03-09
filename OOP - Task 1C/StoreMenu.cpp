@@ -7,11 +7,11 @@ StoreMenu::StoreMenu(const std::string& title, Application* app) : Menu(title, a
 void StoreMenu::OutputOptions()
 {
 	Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
-	Line("Credits: ");
-	Line();	
 	if (app->IsUserLoggedIn() && !app->IsUserGuest()) {
 		if(player){
-			Line("Credits: " + std::to_string(player->getCredits())); //Needs formatting.
+			std::stringstream stream;
+			stream << std::fixed << std::setprecision(2) << player->getCredits() / 100;
+			Line("Credits: " + stream.str()); //Needs formatting.
 			Line();
 			for (int i = 0; i < app->GetStore().GetGames().length(); i++){
 				bool found = false;
@@ -19,8 +19,16 @@ void StoreMenu::OutputOptions()
 					if (player->GetLibrary()[x]->GetName() == app->GetStore().GetGames()[i]->GetName())
 						found = true;				
 				}
-				if (found) Option(i + 1, "(purchased) " + app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
-				else Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
+				if (found) {
+					std::stringstream stream;
+					stream << app->GetStore().GetGames()[i]->GetName() << " (Rating: " << std::fixed << std::setprecision(0) << app->GetStore().GetGames()[i]->calculateRating() << "%) - Purchased";
+					Option(i + 1, stream.str());
+				}
+				else {
+					std::stringstream stream;
+					stream << app->GetStore().GetGames()[i]->GetName() << " (Rating: " << std::fixed << std::setprecision(0) << app->GetStore().GetGames()[i]->calculateRating() << "%)";
+					Option(i + 1, stream.str());
+				}
 			}
 		}
 	}
@@ -30,8 +38,12 @@ void StoreMenu::OutputOptions()
 		else
 			Line("You must login to purchase.");
 		Line();
-		for (int i = 0; i < app->GetStore().GetGames().length(); i++)
-			Option(i + 1, app->GetStore().GetGames()[i]->GetName() + " (Rating: " + std::to_string(app->GetStore().GetGames()[i]->calculateRating()) + "%)");
+		for (int i = 0; i < app->GetStore().GetGames().length(); i++) {
+			std::stringstream stream;
+			stream << app->GetStore().GetGames()[i]->GetName() << " (Rating: " << std::fixed << std::setprecision(0) << app->GetStore().GetGames()[i]->calculateRating() << "%)";
+			Option(i + 1, stream.str());
+
+		}
 	}
 	Line();
 	Option('S', "Search store");

@@ -6,12 +6,12 @@
 class Game
 {
 	public:
-		Game(const std::string&, const std::string&, int, int, int);
+		Game(const std::string&, const std::string&, float, int, int);
 		~Game();
 
 		const std::string& GetName() const;
 		const std::string& GetDescription() const;
-		int GetCost() const;
+		float GetCost() const;
 		void addLike();
 		void addDislike();
 		float calculateRating();
@@ -21,7 +21,7 @@ class Game
 	private:
 		std::string name;
 		std::string description;
-		int cost;
+		float cost;
 		int ageRating;
 		float likes;
 		float dislikes;
