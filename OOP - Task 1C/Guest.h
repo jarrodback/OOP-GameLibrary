@@ -10,7 +10,8 @@ public:
 	std::vector<LibraryItem*> GetLibrary() const;
 	void AddToLibrary(LibraryItem*);
 	void RemoveFromLibrary(LibraryItem*);
+	std::ostream& Write(std::ostream& os);
 private:
 	std::vector<LibraryItem*> library;
 };
-
+std::ostream& operator<<(std::ostream& os, Guest& p);

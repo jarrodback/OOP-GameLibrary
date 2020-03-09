@@ -26,3 +26,20 @@ void Guest::RemoveFromLibrary(LibraryItem* libraryItem)
 	}
 	library.erase(library.begin() + index, library.begin() + index + 1);
 }
+
+std::ostream& Guest::Write(std::ostream& os)
+{
+	// TODO: insert return statement here
+	os << "GUEST" << "\n";
+	for (int x = 0; x < library.size(); x++)
+	{
+		os << *library[x];
+	}
+	return os;
+}
+
+std::ostream& operator<<(std::ostream& os, Guest& p)
+{
+	// TODO: insert return statement here
+	return p.Write(os);
+}
