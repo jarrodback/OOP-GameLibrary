@@ -24,12 +24,13 @@ void ProfileMenu::OutputOptions()
 		for (int x = 0; x < pPlayer->GetLibrary().size(); x++) {
 			Option(x + 1, pPlayer->GetLibrary()[x]->GetName() + " (" + Utils::formatGametime(pPlayer->GetLibrary()[x]->getMinutesPlayed()) + ")");
 		}
-	}
-	else {
+	}else {
 		for (int x = 0; x < sortedList.size(); x++) {
 			Option(x + 1, sortedList[x]->GetName() + " (" + Utils::formatGametime(pPlayer->GetLibrary()[x]->getMinutesPlayed()) + ")");
 		}
 	}
+	Line();
+	Option('V', "Rate a Game");
 	Line();
 	Line("SORT BY");
 	Option('N', "Sort by Name");
@@ -44,6 +45,11 @@ void ProfileMenu::OutputOptions()
 		Line("GUEST SETTINGS");
 		Option('X', "Add Game to Guest Library");
 		Option('Z', "Remove Game from Guest Library");
+	}
+	else {
+		for (int x = 0; x < sortedList.size(); x++) {
+			Option(x + 1, sortedList[x]->GetName());
+		}
 	}
 }
 bool SortByDates(LibraryItem* li, LibraryItem* li2) {
@@ -65,6 +71,29 @@ bool ProfileMenu::HandleChoice(char choice)
 
 	case 'R': {
 		RemoveUserMenu("Remove User From Account", app);
+	}break;
+	case 'V': {
+		Line("Select a game to rate: ");
+		Player* pPlayer = dynamic_cast<Player*>(app->GetCurrentUser());
+		int index = Utils::GetCharFromUser() - '1';
+		if (index >= 0 && index < pPlayer->GetLibrary().size())
+		{
+			Option('L', "Like");
+			Option('D', "Dislike");
+			Line();
+			char choice = Utils::GetCharFromUser();
+			if (choice == 'L') {
+				for (int i = 0; i < app->GetStore().GetGames().length(); ++i)
+					if (app->GetStore().GetGames()[i]->GetName() == pPlayer->GetLibrary()[index]->GetName())
+						app->GetStore().GetGames()[i]->addLike();
+			}
+			else if (choice == 'D') {
+				for (int i = 0; i < app->GetStore().GetGames().length(); ++i)
+					if (app->GetStore().GetGames()[i]->GetName() == pPlayer->GetLibrary()[index]->GetName())
+						app->GetStore().GetGames()[i]->addDislike();
+			}
+				
+		}
 	}break;
 
 	case 'N': {
