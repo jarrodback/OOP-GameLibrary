@@ -48,7 +48,11 @@ bool MainMenu::HandleChoice(char choice)
 		{
 			// this would need to go to a LoginMenu - similar to StoreMenu
 			// instead we just set logged in to true on the main app object
-			LoginMenu("ACCOUNT LOGIN", app);
+			std::string email = Question("Please enter your email");
+			std::string password = Question("Enter the password");
+			app->LoginAccount(email, password);
+			if (app->IsAccountLoggedIn())
+				LoginMenu("USER LOGIN", app);
 		}
 	} break;
 	case 'P':

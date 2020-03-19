@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Utils.h"
 #include "RemoveUserMenu.h"
+#include "AdminProfileMenu.h"
 #include <algorithm>
 
 class ProfileMenu :	public Menu

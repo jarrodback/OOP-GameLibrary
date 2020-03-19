@@ -63,7 +63,10 @@ std::string Utils::formatGametime(int mins)
 	else if (timePlayed >= 60 && timePlayed < 300) {
 		timePlayed /= 60;
 		timePlayed = (floor(timePlayed * 2) / 2);
-		stream << std::setprecision(1) << timePlayed << " hour(s)";
+		if(timePlayed == 1)
+			stream << std::setprecision(1) << timePlayed << " hour";
+		else
+			stream << std::setprecision(1) << timePlayed << " hours";
 		return stream.str();
 	}
 	
