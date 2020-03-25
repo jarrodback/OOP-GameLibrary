@@ -11,7 +11,7 @@ class LibraryItem
 		~LibraryItem();
 		const std::string& GetName() const;
 		std::ostream& Write(std::ostream& os) const;
-		const int& getMinutesPlayed();
+		const int& getMinutesPlayed() const;
 		void addMinutesPlayed(int amt);
 		const Date GetDate() const;
 		const Game GetGame() const;

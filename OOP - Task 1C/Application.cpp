@@ -250,12 +250,12 @@ const List<Account*> Application::GetAccounts() const
 	return accounts;
 }
 
-void Application::AddToAccounts(Account* account)
+void Application::AddToAccounts(Account* const account)
 {
 	accounts.addAtEnd(account);
 }
 
-void Application::RemoveFromAccounts(Account* account)
+void Application::RemoveFromAccounts(Account* const account)
 {
 	accounts.deleteOne(account);
 }

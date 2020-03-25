@@ -27,7 +27,7 @@ std::ostream& operator<<(std::ostream& os, LibraryItem const& li)
 	return li.Write(os);
 }
 
-const int& LibraryItem::getMinutesPlayed()
+const int& LibraryItem::getMinutesPlayed() const
 {
 	return timePlayed;
 }

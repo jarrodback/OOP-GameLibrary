@@ -62,7 +62,7 @@ bool Player::DoesLibraryContain(LibraryItem* libraryItem) const {
 	return false;
 }
 
-const float Player::getCredits()
+const float Player::getCredits() const
 {
 	return credits;
 }

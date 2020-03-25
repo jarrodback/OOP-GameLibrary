@@ -12,7 +12,7 @@ class Player : public User
 		~Player();
 		std::ostream& Write(std::ostream& os);
 		std::vector<LibraryItem*> GetLibrary() const;
-		const float getCredits();
+		const float getCredits() const;
 		void deductCredits(float amt);
 		void addCredits(float amt);
 		void AddToLibrary(LibraryItem*);
